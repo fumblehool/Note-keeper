@@ -30,6 +30,10 @@ module.exports = {
           compact: false,
         },
       },
+      {
+        test: /\.(scss|css)$/,
+        use: ['style-loader', 'css-loader']
+      }
     ],
   },
 

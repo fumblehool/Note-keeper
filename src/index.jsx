@@ -7,6 +7,9 @@ import configureStore from './stores/index.jsx';
 
 import App from './components/app.jsx';
 
+//css
+import './sass/app.scss';
+
 const store = configureStore();
 
 
