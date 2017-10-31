@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class Sidebar extends Component{
+class SideContent extends Component{
   render() {
     return(
       <div>
-        Sidebar
+        SideContent
       </div>  
     );
   }
 }
 
-export default Sidebar;
+export default SideContent;

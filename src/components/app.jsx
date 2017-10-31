@@ -6,12 +6,9 @@ import Base from './Layout/Base';
 
 class App extends React.Component {
   render() {
-    return (
-      <div>
-        <Base/>
-        <Users />
-      </div>
-    );
+    return ([
+        <Base key="base"/>
+    ]);
   }
 }
 

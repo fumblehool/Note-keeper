@@ -27,13 +27,13 @@ const Actions = {
           dispatch({
             type: types.SEARCH_USER_BY_AGE_SUCCESS,
             data: userDetails,
-          })
-            .catch((error) => {
-              dispatch({
-                type: types.SEARCH_USER_BY_AGE_ERROR,
-                error,
-              });
-            });
+          });
+        })  
+        .catch((error) => {
+          dispatch({
+            type: types.SEARCH_USER_BY_AGE_ERROR,
+            error,
+          });
         });
     };
   },

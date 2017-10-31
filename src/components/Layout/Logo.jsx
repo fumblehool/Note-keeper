@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 
-
-
-class Header extends Component{
+class Logo extends Component{
   render () {
-    return(
+    return (
       <div>
-        Header
+        Logo
       </div>
     );
   }
 }
 
-export default Header;
+export default Logo;

@@ -32,8 +32,12 @@ module.exports = {
       },
       {
         test: /\.(scss|css)$/,
-        use: ['style-loader', 'css-loader']
-      }
+        use: ['style-loader', 'css-loader', 'sass-loader']
+      },
+      {
+      'test': /\.(eot|woff|woff2|svg|ttf)([\?]?.*)$/,
+      'loader': 'file-loader'
+      },
     ],
   },
 
@@ -41,7 +45,7 @@ module.exports = {
   devtool: 'source-map',
 
   resolve: {
-    extensions: ['*', '.js', '.jsx'],
+    extensions: ['*', '.js', '.jsx', '.scss'],
   },
 
   // DevServer config
