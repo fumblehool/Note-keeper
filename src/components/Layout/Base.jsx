@@ -17,39 +17,20 @@ class Base extends Component{
       </div>
       <div className="sidebar-content b-black">
         <Sidebar/>
-        <div className="sidebar-item b-black">
-          Item1
-        </div>
+        
       </div>
     </div>
     
             <div className="main-content b-blue">
-              <div className="header b-red">
-                <div className="header-item b-blue">
-                  Search 
-                </div>
 
                 <Header/>
-
-                <div className="header-item b-blue">
-                  User
-                </div>
-              </div>
 
 
       <div className=" content b-black">
         <div className=" content-sidebar b-green ">
           
         <SideContent/>
-          <div className="content-sidebar-header">
-            Header
-          </div>
-            <div className="content-sidebar-item">
-              Item 1
-            </div>
-            
-
-
+          
         </div>
 
         <div className="b-violet section">

@@ -27,6 +27,9 @@ body, html, #app{
 .b-black{
   border: 2px solid black;
 }
+.b-white{
+  border: 2px solid white;
+}
 
 .wrapper{
   display: flex;
@@ -36,7 +39,7 @@ body, html, #app{
 
 .sidebar{
   display: flex;
-  flex: .3;
+  // flex: .3;
   flex-direction: column;
 }
 
@@ -48,18 +51,22 @@ body, html, #app{
 
 .header{
   display: flex;
-  flex: .07;
+  height: 60px;
   flex-direction: row;
   justify-content: space-between;
+  background-color: #fff;
 }
 .logo{
-  width: 100%;
-  height: 50px;
+  width: 280px;
+  height: 60px;
+  background-color: #56a07b;
 }
-
+.color{
+  background-color: #56a07b;
+}
 .content{
   display: flex;
-  flex: .93;
+  height: 100%;
 }
 
 .section{
@@ -68,12 +75,13 @@ body, html, #app{
 }
 
 .sidebar-content{
-  /*display: flex;*/
-  /*flex: 0.93;*/
   height: 100%;
   flex-direction: column;
   overflow-y: scroll;
   overflow-x: hidden;
+  background-color: #28343d;
+  color: white;
+  width: 280px;
 }
 
 .sidebar-item{
@@ -85,6 +93,12 @@ body, html, #app{
   height: 40px;
 }
 
+.sidebar-header{
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+}
 
 .content-sidebar-header{
   /*display: flex;*/
@@ -92,10 +106,11 @@ body, html, #app{
 }
 
 .content-sidebar{
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
+  width: 400px;
   /*display: flex;*/
-  flex: .3;
+  // flex: .3;
   /*flex-direction: column;*/
 }
 
@@ -106,4 +121,57 @@ body, html, #app{
   border: 3px solid red;
   width: 100%;
   height: 40px;
+}
+
+.sidebar-options{
+  margin:0px;
+  padding:0px;
+}
+
+.sidebar-tags-header{
+  display: flex;
+  justify-content: space-between;
+  padding:10px;
+}
+
+.sidebar-tags-header-mid{
+  display: flex;
+  justify-content: space-between;
+}
+
+.content-sidebar-li{
+  margin:0px;
+  border: 2px solid black;
+  border-bottom: 1px solid rgba(55,53,112,.1);
+  cursor: pointer;
+  display: block;
+  padding: 20px;
+}
+
+.content-sidebar-ul{
+  margin: 0px;
+  list-style-type: none;
+  padding: 0px;
+  max-height: 100px;
+}
+
+.header-item-search{
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-item-user {
+  color: #557389;
+  margin-right: 40px;
+  display: inline-block;
+  padding: 10px;
+}
+.user-avatar {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
 }

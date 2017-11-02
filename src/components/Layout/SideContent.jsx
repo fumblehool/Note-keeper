@@ -3,9 +3,17 @@ import React, { Component } from 'react';
 class SideContent extends Component{
   render() {
     return(
-      <div>
-        SideContent
-      </div>  
+      <ul id="L" className="content-sidebar-ul">
+          <li className="content-sidebar-li"> Item 1 </li>
+          <li className="content-sidebar-li"> Item 1 </li>
+          <li className="content-sidebar-li"> Item 1 </li>
+          <li className="content-sidebar-li"> Item 1 </li>
+          <li className="content-sidebar-li"> Item 1 </li>
+          <li className="content-sidebar-li"> Item 1 </li>
+          <li className="content-sidebar-li"> Item 1 </li>
+          <li className="content-sidebar-li"> Item 1 </li>
+          <li className="content-sidebar-li"> Item 1 </li>
+        </ul>  
     );
   }
 }
