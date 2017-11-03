@@ -20,7 +20,7 @@ class Header extends Component{
         <div className="header-item-user b-blue">
           <img src="https://avatars0.githubusercontent.com/u/8335453?v=4" className="user-avatar"/>
           <span>Damanpreet Singh</span>
-          <i className="fa fa-caret"></i>
+          <i className="fa fa-chevron-down"></i>
         </div>
       </div>
     );
