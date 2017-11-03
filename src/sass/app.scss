@@ -34,7 +34,7 @@ body, html, #app{
 
 .header{
   display: flex;
-  height: 60px;
+  height: 75px;
   flex-direction: row;
   justify-content: space-between;
   background-color: #fff;
@@ -220,24 +220,88 @@ body, html, #app{
 }
 
 
+.content-sidebar-repos{
+  margin: 0px;
+  list-style-type: none;
+  padding: 0px;
+  width: 100%;
+  border-right: 1px solid rgba(55,53,112,.1);
+
+}
+
 .content-sidebar-li{
   margin:0px;
   border-bottom: 1px solid rgba(55,53,112,.1);
   cursor: pointer;
   display: block;
   padding: 20px;
+  background-color: #fff;
 }
 
 .content-sidebar-li:hover{
-  background-color: #beecea;
+  background-color: #fcfcfc;;
 }
 
-.content-sidebar-ul{
-  margin: 0px;
-  list-style-type: none;
-  padding: 0px;
-  max-height: 100px;
+.content-sidebar-li-h3{
+  color: #56a07b;
+  font-size: 1rem;
+  margin: 0 0 10px;
 }
+.content-sidebar-li-description{
+  color: #28343d;
+  font-size: .8rem;
+  line-height: 1.5;
+}
+
+.content-sidebar-li-active{
+  background: #fafafa;
+}
+
+.content-sidebar-li-tags{
+  margin: 8px 0 3px;
+  padding: 0px;
+  list-style-type: none;
+}
+
+.content-sidebar-li-tags li{
+  background-color: #465b6b;
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: .7rem;
+  color: white;
+  border-radius: 50px;
+  margin: 0 3px 0 0;
+}
+
+
+.content-sidebar-li-repo-stats{
+  margin: 15px 0 0 0;
+  font-size: .7rem;
+  white-space: nowrap;
+  color: #658399;
+
+}
+
+.stars {
+  display: inline-block;
+  margin-right: 12px;
+}
+
+.forks {
+  display: inline-block;
+  margin-right: 12px;
+}
+
+.link {
+  display: inline-block;
+  text-decoration: none;
+  margin-right: 12;
+}
+
+.link a{
+  color: #658399;
+}
+
 
 .header-search{
   display: flex;
@@ -335,3 +399,4 @@ body, html, #app{
   background-color: #fff;
   color: #000;
 }
+
