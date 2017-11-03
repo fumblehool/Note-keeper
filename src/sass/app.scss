@@ -38,7 +38,9 @@ body, html, #app{
   flex-direction: row;
   justify-content: space-between;
   background-color: #fff;
-  border: 1px solid rgba(55,53,112,.1)
+  border: 1px solid rgba(55,53,112,.1);
+  align-items: center;
+
 }
 .logo{
   height: 50px;
@@ -237,25 +239,57 @@ body, html, #app{
   max-height: 100px;
 }
 
-.header-item-search{
-  width: 400px;
+.header-search{
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
-.header-item-user {
+.header-search h2{
+  color: #28343d;
+  margin: 0 0 0 20px;
+}
+
+.header-user {
   color: #557389;
   margin-right: 40px;
   display: inline-block;
-  padding: 10px;
+  cursor: pointer;
 }
+
+.header-settings{
+  transition: color .15s linear;
+  color: #658399;
+  cursor: pointer;
+  font-size: .9rem;
+  line-height: 1;
+  margin-left: 5px;
+  margin-right: 10px;
+  position: relative;
+  top: 2px;
+}
+
+.header-form{
+
+}
+
+.header-status{
+
+}
+
+
 .user-avatar {
   border-radius: 50%;
   height: 40px;
   width: 40px;
   display: inline-block;
   vertical-align: middle;
-  margin-right: 10px;
+  margin-right: 5px;
+}
+
+.username {
+  font-size: .9rem;
+  pointer-events: none;
 }
 
 .m-right{
