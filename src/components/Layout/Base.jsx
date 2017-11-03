@@ -33,9 +33,9 @@ class Base extends Component{
           
         </div>
 
-        <div className="b-violet section">
+        
         <MainContent/>
-        </div>
+        
       </div>
   </div>
   </div>

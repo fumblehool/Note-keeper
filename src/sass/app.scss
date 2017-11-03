@@ -56,11 +56,6 @@ body, html, #app{
   height: 100%;
 }
 
-.section{
-  display: flex;
-  flex: 1.4;
-}
-
 .sidebar-content{
   height: 100%;
   flex-direction: column;
@@ -400,3 +395,70 @@ body, html, #app{
   color: #000;
 }
 
+.section{
+  display: flex;
+  flex: 1.4;
+  color: #28343d;
+  background-color: #fff;
+  flex-direction: column;
+}
+
+.section-topbar{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 45px;
+  background: #fafafa;
+  border-bottom: 1px solid rgba(55,53,112,.1);
+  box-shadow: 0 1px 3px rgba(55,53,112,.08);
+  align-items: center;
+}
+
+.edit {
+  display: flex;
+  margin-left: 20px;
+  align-items: center;
+  justify-content: space-between;
+  width: 22%; 
+}
+
+.repo-action {
+  padding: 5px 5px;
+  border: 1px solid rgba(55,53,112,.1);
+  background-color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit > div > button:hover{
+  box-shadow: 0 1px 1px rgba(0,0,0,.08);
+  background-color: #fcfcfc;
+}
+
+.clone-repo {
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 45%;
+  height: 100%;
+}
+
+
+.clone-repo-input{
+  width: 80%;
+  height: 60%;
+}
+
+.repo-readme {
+  font-size: .9rem;
+  line-height: 1.5;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: 20px;
+  top: 45px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  word-wrap: break-word;
+}
