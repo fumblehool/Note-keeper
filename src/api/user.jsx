@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 
-import ApiConstants from '../constants/ApiConstants';
+// import ApiConstants from '../constants/ApiConstants';
 
 export default {
   searchUserByAge(age) {

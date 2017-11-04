@@ -1,5 +1,8 @@
+const devStore = require('./store.dev.jsx');
+const prodStore = require('./store.prod.jsx');
+
 if (process.env.IS_PRODUCTION) {
-  module.exports = require('./store.prod.jsx');
+  module.exports = devStore;
 } else {
-  module.exports = require('./store.dev.jsx');
+  module.exports = prodStore;
 }

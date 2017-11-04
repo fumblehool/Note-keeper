@@ -1,45 +1,20 @@
-import React, { Component } from 'react';
-import Logo from './Logo';
-import Header from './Header';
-import Sidebar from './Sidebar';
-import SideContent from './SideContent';
-import MainContent from './MainContent';
+import React, { PureComponent } from 'react';
 // import Users from './../../containers/Users';
-import Footer from './Footer';
+import HeaderContainer from './../../containers/Header';
+import SidebarContainer from './../../containers/Sidebar';
+import Content from './../../containers/Content';
+// import Footer from './Footer';
 
-class Base extends Component{
+class Base extends PureComponent {
   render () {
-    return(
-      <div className="wrapper b-red">
-      <div className=" sidebar b-black">
-      <div className="logo b-green">
-        <Logo/>
-      </div>
-      <div className="sidebar-content b-black">
-        <Sidebar/>
-        
-      </div>
-    </div>
-    
-            <div className="main-content b-blue">
-
-                <Header/>
-
-
-      <div className=" content b-black">
-        <div className=" content-sidebar b-green ">
-          
-        <SideContent/>
-          
+    return (
+      <div className="wrapper">
+        <SidebarContainer />
+        <div className="main-content b-blue">
+          <HeaderContainer />
+          <Content />
         </div>
-
-        
-        <MainContent/>
-        
       </div>
-  </div>
-  </div>
-
     );
   }
 }

@@ -1,43 +1,10 @@
 import React, { Component } from 'react';
 
-class Sidebar extends Component{
+
+class TagsList extends Component{
   render() {
-    return(
-      <div className="sidebar-content">
-        <div className="sidebar-header">
-          <div>
-            <h3>
-              stars
-            </h3>
-          </div>
-          <div className="sidebar-header-control">
-            <button className="sidebar-header-control-btn">
-              <i className="fa fa-refresh"></i>
-            </button>
-          </div>
-        </div>
-
-        <ul className="sidebar-options b-white">
-          <li> <i className="fa fa-inbox m-right"></i>All Stars</li>
-          <li> <i className="fa fa-star-o m-right"></i>Untagged Stars</li>
-        </ul>
-
-        <div className="sidebar-tags-header b-blue">
-          <h3 className="sidebar-tags-header-text">Tags</h3>
-          <div className="sidebar-tags-header-options b-red">
-            <div><i className="fa fa-plus-circle m-right"></i>Add</div>
-            <div><i className="fa fa-sort m-right"></i>Sort</div>
-          </div>     
-        </div>  
-
-
-        <form className="tags-form">
-          <input className="tags-form-input" placeholder="Tag name" type="text"/>
-          <button>Save</button>
-        </form>
-
-
-        <ul className="sidebar-list">
+    return (
+      <ul className="sidebar-list">
           <li className="sidebar-item">
             <div>
               <i className="fa fa-tag m-right"></i>
@@ -77,12 +44,8 @@ class Sidebar extends Component{
             <span className="tags-count">2</span>
           </li>
         </ul>
-
-        
-        
-      </div>  
     );
   }
 }
 
-export default Sidebar;
+export default TagsList;

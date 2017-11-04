@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 class SideContent extends Component{
   render() {
     return(
+      <div className=" content-sidebar b-green ">
       <ul className="content-sidebar-repos">
         <li className="content-sidebar-li">
           <h3 className="content-sidebar-li-h3">
@@ -33,6 +34,7 @@ class SideContent extends Component{
  
         </li>
       </ul>  
+      </div>
     );
   }
 }

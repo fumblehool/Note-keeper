@@ -28,7 +28,7 @@ const Actions = {
             type: types.SEARCH_USER_BY_AGE_SUCCESS,
             data: userDetails,
           });
-        })  
+        })
         .catch((error) => {
           dispatch({
             type: types.SEARCH_USER_BY_AGE_ERROR,

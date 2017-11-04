@@ -1,10 +1,11 @@
-import { createStore } from 'redux';
-
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import rootReducer from '../reducers/index';
 
 export default function () {
   const store = createStore(
-    // Reducers.
-    // ...
-  );
+    rootReducer,
+    applyMiddleware(thunkMiddleware),
+  ); // Reducers
   return store;
 }
