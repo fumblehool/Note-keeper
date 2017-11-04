@@ -37,6 +37,13 @@ const Actions = {
         });
     };
   },
+  refreshRepoList() {
+    return (dispatch) => {
+      dispatch({
+        type: types.GET_ALL_REPOS,
+      });
+    };
+  },
 };
 
 export default Actions;

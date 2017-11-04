@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import TagsList from './TagsList';
-
+import AddTagForm from './AddTagForm';
 
 class Sidebar extends Component{
-
   state = {
     'addTagVisibility': false,
   };
 
   onRefresh = () => {
-    alert('Refresh Clicked');
+    this.props.actions.refreshRepoList();
   };
 
   onAddTag = () => {
     this.setState({
       'addTagVisibility': !this.state.addTagVisibility
     });
+  }
+
+  handleTagClick = (e) => {
+    
   }
 
   render() {
@@ -50,15 +53,14 @@ class Sidebar extends Component{
       {(() => {
         if (this.state.addTagVisibility) {
           return (  
-          <form className="tags-form">
-            <input className="tags-form-input" placeholder="Tag name" type="text"/>
-            <button>Save</button>
-          </form>
-          )
+            <AddTagForm
+              active={this.state.addTagVisibility}
+             />
+          );
         }
       })()}
       
-      <TagsList />
+      <TagsList handleTagClick={this.handleTagClick} />
       
       </div>
     );
