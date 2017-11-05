@@ -16,14 +16,18 @@ class Sidebar extends Component{
     this.setState({
       'addTagVisibility': !this.state.addTagVisibility
     });
-  }
+  };
 
   handleTagClick = (tagName) => {
     this.setState({
       'selectedTag': tagName
     })
     console.log('tag -> ', tagName, 'clicked')
-  }
+  };
+
+  addNewTag = (tagName) => {
+    this.props.actions.addNewTag(tagName);
+  };
 
   render() {
     return(
@@ -65,6 +69,7 @@ class Sidebar extends Component{
           return (  
             <AddTagForm
               active={this.state.addTagVisibility}
+              addNewTag={this.addNewTag}
              />
           );
         }

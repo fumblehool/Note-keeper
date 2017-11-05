@@ -8,4 +8,6 @@ export const GET_ALL_REPOS = 'GET_ALL_REPOS';
 
 export const FETCH_TAGS_LIST = 'FETCH_TAGS_LIST';
 
+export const Add_NEW_TAG = 'Add_NEW_TAG';
+
 export const FETCH_REPO_DETAILS = 'FETCH_REPO_DETAILS';

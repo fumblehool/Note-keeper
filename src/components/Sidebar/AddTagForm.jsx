@@ -12,8 +12,9 @@ class AddTagForm extends Component {
     });
   }
 
-  addnewTag = () => {
+  addNewTag = () => {
     console.log(this.state.tag);
+    this.props.addNewTag(this.state.tag);
   };
 
   render() {
@@ -23,7 +24,7 @@ class AddTagForm extends Component {
           <input className="tags-form-input" placeholder="Tag name" type="text"
             onChange={this.handleTagNameChange}
           />
-          <button onClick={this.addnewTag}>
+          <button onClick={this.addNewTag}>
             Save
           </button>
         </div>

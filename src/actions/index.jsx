@@ -53,6 +53,15 @@ const Actions = {
     };
   },
 
+  addNewTag(tagName) {
+    return(dispatch) => {
+      dispatch({
+        type: types.Add_NEW_TAG,
+        tagName
+      })
+    }
+  },
+
   fetchRepo(repoId) {
     return (dispatch) => {
       dispatch({
