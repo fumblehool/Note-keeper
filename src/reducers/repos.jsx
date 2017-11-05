@@ -21,7 +21,16 @@ export default function (state = initialState, action) {
             'forks': '1206',
             'link': 'https://github.com/GoogleChrome/samples',
             'tags': ['test', 'test2']
-          }
+          },
+          {
+            'name': 'ES6-for-humans',
+            'owner': 'metagrover',
+            'description': 'A kickstarter guide to writing ES6',
+            'stars': '4283',
+            'forks': '226',
+            'link': 'https://github.com/metagrover/ES6-for-humans',
+            'tags': ['test']
+          },
         ]
       });
 

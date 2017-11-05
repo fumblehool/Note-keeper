@@ -21,7 +21,7 @@ class SideContent extends Component{
                     {
                       repo.get('tags').map((tag) => {
                         return(
-                          <li>{tag}</li>
+                          <li key={tag}>{tag}</li>
                         )
                       })
                     }

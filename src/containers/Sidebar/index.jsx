@@ -7,11 +7,20 @@ import { connect } from 'react-redux';
 import actions from '../../actions/index';
 
 class SidebarContainer extends Component {
+  componentDidMount() {
+    this.props.actions.fetchTagsList();
+    this.props.actions.refreshRepoList();
+  };
+
+
   render() {
     return (
       <div className=" sidebar">
       <Logo />
-      <Sidebar actions={this.props.actions} />
+      <Sidebar
+        actions={this.props.actions}
+        tags={this.props.tags}
+      />
       </div>
     );
   }
@@ -25,7 +34,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStatesToProps(state) {
   return {
-    users: state.users,
+    tags: state.tags,
   };
 }
 

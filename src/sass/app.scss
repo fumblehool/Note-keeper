@@ -96,6 +96,11 @@ body, html, #app{
   pointer-events: none;
 }
 
+.tag-focused{
+  background-color: hsla(0,0%,100%,.03);
+  color: hsla(0,0%,100%,.85);
+}
+
 .sidebar-header{
   padding: 0 12px 0 20px;
   height: 40px;

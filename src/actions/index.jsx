@@ -44,6 +44,14 @@ const Actions = {
       });
     };
   },
+
+  fetchTagsList() {
+    return (dispatch) => {
+      dispatch({
+        type: types.FETCH_TAGS_LIST,
+      });
+    };
+  },
 };
 
 export default Actions;

@@ -5,3 +5,5 @@ export const SEARCH_USER_BY_AGE_ERROR = 'SEARCH_USER_BY_AGE_ERROR';
 
 
 export const GET_ALL_REPOS = 'GET_ALL_REPOS';
+
+export const FETCH_TAGS_LIST = 'FETCH_TAGS_LIST';

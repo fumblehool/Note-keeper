@@ -5,6 +5,7 @@ import AddTagForm from './AddTagForm';
 class Sidebar extends Component{
   state = {
     'addTagVisibility': false,
+    'selectedTag': 'all',
   };
 
   onRefresh = () => {
@@ -17,8 +18,11 @@ class Sidebar extends Component{
     });
   }
 
-  handleTagClick = (e) => {
-    
+  handleTagClick = (tagName) => {
+    this.setState({
+      'selectedTag': tagName
+    })
+    console.log('tag -> ', tagName, 'clicked')
   }
 
   render() {
@@ -37,9 +41,15 @@ class Sidebar extends Component{
           </div>
         </div>
 
-        <ul className="sidebar-options b-white">
-          <li> <i className="fa fa-inbox m-right"></i>All Stars</li>
-          <li> <i className="fa fa-star-o m-right"></i>Untagged Stars</li>
+        <ul className="sidebar-options">
+          <li onClick={this.handleTagClick.bind(this, 'all')}>
+            <i className="fa fa-inbox m-right"></i>
+            All Stars
+          </li>
+          <li onClick={this.handleTagClick.bind(this, 'untagged')}>
+            <i className="fa fa-star-o m-right"></i>
+            Untagged Stars
+          </li>
         </ul>
 
         <div className="sidebar-tags-header b-blue">
@@ -60,7 +70,11 @@ class Sidebar extends Component{
         }
       })()}
       
-      <TagsList handleTagClick={this.handleTagClick} />
+      <TagsList
+        handleTagClick={this.handleTagClick}
+        tagsList={this.props.tags}
+        selectedTag={this.state.selectedTag}
+      />
       
       </div>
     );
