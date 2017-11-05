@@ -52,6 +52,15 @@ const Actions = {
       });
     };
   },
+
+  fetchRepo(repoId) {
+    return (dispatch) => {
+      dispatch({
+        type: types.FETCH_REPO_DETAILS,
+        repoId,
+      });
+    };
+  },
 };
 
 export default Actions;

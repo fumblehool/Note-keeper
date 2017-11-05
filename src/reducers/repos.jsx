@@ -14,6 +14,7 @@ export default function (state = initialState, action) {
         'isFetchingError': false,
         'reposList': [
           {
+            'id': 1,
             'name': 'samples',
             'owner': 'GoogleChrome',
             'description': 'A repo containing samples tied to new functionality in each release of Google Chrome.',
@@ -23,6 +24,7 @@ export default function (state = initialState, action) {
             'tags': ['test', 'test2']
           },
           {
+            'id': 2,
             'name': 'ES6-for-humans',
             'owner': 'metagrover',
             'description': 'A kickstarter guide to writing ES6',

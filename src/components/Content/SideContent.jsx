@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 
 class SideContent extends Component{
 
+  onRepoClick = (repoId) => {
+    this.props.onRepoClick(repoId);
+  };
+
   render() {
     return(
       <div className="content-sidebar">
@@ -10,7 +14,8 @@ class SideContent extends Component{
             if (this.props.repoList && this.props.repoList.get('reposList').size) {
               return this.props.repoList.get('reposList').map((repo, index) => {
                 return(
-                  <li className="content-sidebar-li" key={index}>
+                  <li className="content-sidebar-li" key={index}
+                    onClick={this.onRepoClick.bind(this, repo.get('id'))}>
                     <h3 className="content-sidebar-li-h3">
                       {repo.get('owner')}/{repo.get('name')}
                     </h3> 

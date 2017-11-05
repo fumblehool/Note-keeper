@@ -7,11 +7,21 @@ import { connect } from 'react-redux';
 import actions from '../../actions';
 
 class Content extends Component {
+  
+  handleRepoClick = (repoId) => {
+    this.props.actions.fetchRepo(repoId);
+  };
+
   render() {
     return (
       <div className=" content b-black">
-        <SideContent repoList={this.props.repos}/>
-        <MainContent />
+        <SideContent
+          repoList={this.props.repos}
+          onRepoClick={this.handleRepoClick}
+        />
+        <MainContent
+          repoDetails={this.props.repoDetails}
+        />
       </div>
     );
   }
@@ -26,6 +36,7 @@ function mapDispatchToProps(dispatch) {
 function mapStatesToProps(state) {
   return {
     repos: state.repos,
+    repoDetails: state.repoDetails,
   };
 }
 
