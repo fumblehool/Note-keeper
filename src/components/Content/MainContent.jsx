@@ -1,52 +1,53 @@
 import React, { Component } from 'react';
+import TopBar from './TopBar';
+
 
 class MainContent extends Component{
 
+  state = {
+    'editMode': false
+  };
+
   handleNotesClick = () => {
-    alert(this.props.repoDetails.get('note'));
+    this.setState({
+      'editMode': !this.state.editMode
+    })
   };
 
   handleTagsClick = () => {
-    alert(this.props.repoDetails.get('tags'));
+    console.log(this.props.repoDetails.get('tags'));
   };
 
   render() {
+    // To do - add condition to check instead of checking readMe.
     if (this.props.repoDetails.get('readMe')) {
       return(
         <div className="section">
-      	<div className="section-topbar">
-        	<div className="edit">	
-            <div>
-        		  <button onClick={this.handleTagsClick} 
-                className="repo-action">
-                <i className="fa fa-tag m-right"></i>
-                Edit tags
-              </button>
-            </div>
-            <div>
-        		<button className="repo-action" onClick={this.handleNotesClick}>
-              <i className="fa fa-sticky-note m-right"></i>
-              Notes
-            </button>
-            </div>
-          </div>
-
-          <div className="clone-repo">
-            <label>
-              Clone: 
-            </label>  
-      		  <input className="clone-repo-input" disabled placeholder="git@github.com:GoogleChrome/samples.git"/>
-          </div>  
-      	</div>
-        
+          <TopBar
+            handleNotesClick={this.handleNotesClick}
+            handleTagsClick={this.handleTagsClick}
+            editMode={this.state.editMode}
+          />  
         <div className="repo-readme">
-          {this.props.repoDetails.get('readMe')}
+          {(()=>{
+            if(!this.state.editMode){
+              return(
+                <div>{this.props.repoDetails.get('readMe')}</div>
+              );
+            }
+            return(
+              <div> Edit Notes.</div>
+            );
+          })()}
+
+          
         </div>
       </div>
       );
     }
+
     return(
-      <div className="section">
+      <div className="section empty-placeholder">
         No Repo Selected.
       </div>  
     );
