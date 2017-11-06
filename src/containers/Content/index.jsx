@@ -7,10 +7,16 @@ import { connect } from 'react-redux';
 import actions from '../../actions';
 
 class Content extends Component {
-  
+
   handleRepoClick = (repoId) => {
     this.props.actions.fetchRepo(repoId);
   };
+
+  componentWillReceiveProps(nextProps){
+    if(this.props.tagName !== nextProps.tagName){
+      this.props.actions.fetchRepoList(nextProps.tagName);
+    }
+  }
 
   render() {
     return (
@@ -18,6 +24,7 @@ class Content extends Component {
         <SideContent
           repoList={this.props.repos}
           onRepoClick={this.handleRepoClick}
+          history={this.props.history}
         />
         <MainContent
           repoDetails={this.props.repoDetails}

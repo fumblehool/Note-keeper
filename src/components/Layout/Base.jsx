@@ -8,21 +8,22 @@ import Content from './../../containers/Content';
 class Base extends PureComponent {
 
   componentDidMount() {
-    if(!this.props.history.location.search){
+    if (!this.props.history.location.search) {
       this.props.history.push(`?tag=allStars`);
     }
-  };
+  }
 
   render() {
-    return (
-      <div className="wrapper">
-        <SidebarContainer history={this.props.history} />
-        <div className="main-content">
+    return ([
+        <SidebarContainer key="0" history={this.props.history} />,
+        <div className="main-content" key="1">
           <HeaderContainer history={this.props.history} />
-          <Content history={this.props.history} />
-        </div>
-      </div>
-    );
+          <Content
+            history={this.props.history}
+            tagName={this.props.history.location.search.split('=')[1]}
+          />
+        </div>,
+    ]);
   }
 }
 

@@ -8,6 +8,14 @@ class MainContent extends Component{
     'editMode': false
   };
 
+  componentWillReceiveProps(nextProps) {
+    if(this.props.repoDetails !== nextProps.repoDetails){
+      this.setState({
+        'editMode': false
+      });
+    }
+  }
+
   handleNotesClick = () => {
     this.setState({
       'editMode': !this.state.editMode
@@ -15,7 +23,6 @@ class MainContent extends Component{
   };
 
   handleTagsClick = () => {
-    console.log(this.props.repoDetails.get('tags'));
   };
 
   render() {
@@ -48,7 +55,9 @@ class MainContent extends Component{
 
     return(
       <div className="section empty-placeholder">
-        No Repo Selected.
+        <span>
+          No Repo Selected.
+        </span>
       </div>  
     );
   }

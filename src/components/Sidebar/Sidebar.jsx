@@ -32,8 +32,6 @@ class Sidebar extends Component{
     this.setState({
       'selectedTag': tagName
     })
-
-    console.log('tag -> ', tagName, 'clicked')
     this.props.history.push('/dashboard?tag=' + tagName);
   };
 

@@ -8,7 +8,12 @@ const initialState = fromJS({
 });
 
 export default function (state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
+    case types.FETCH_REPO_LIST:
+      return state.merge({
+        'reposList': action.data
+      });
+
     case types.GET_ALL_REPOS:
       return state.merge({
         'isFetchingError': false,

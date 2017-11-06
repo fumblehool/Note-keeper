@@ -11,7 +11,7 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div>
+        <div className="wrapper">
           <Switch>
             
             <Route path="/dashboard" component={Base} />

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
 
 class SideContent extends Component{
 
@@ -18,10 +19,10 @@ class SideContent extends Component{
       <div className="content-sidebar">
         <ul className="content-sidebar-repos">
           {(()=>{
-            if (this.props.repoList && this.props.repoList.get('reposList').size) {
+            if (this.props.repoList && this.props.repoList.get('reposList') && this.props.repoList.get('reposList').size) {
               return this.props.repoList.get('reposList').map((repo, index) => {
                 return(
-                  <li className='content-sidebar-li' key={index}
+                  <li className={classNames('content-sidebar-li', {'content-sidebar-li-active': repo.get('id') === this.state.selectedRepoId})} key={index}
                     onClick={this.onRepoClick.bind(this, repo.get('id'))}>
                     <h3 className="content-sidebar-li-h3">
                       {repo.get('owner')}/{repo.get('name')}

@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 
 class Header extends Component{
   state = {
-    'title': 'All Stars'
+    'title': 'All Stars',
+    'showDropDown': false
   };
 
   componentDidMount(){
@@ -12,15 +13,29 @@ class Header extends Component{
 
   componentWillReceiveProps(nextProps) {
     this.setHeaderTitle(nextProps);
+    if (this.state.showDropDown){
+      document.addEventListener('mousedown', this.handleClickOutside);
+    };
   };
 
-  setHeaderTitle(props){
+  handleClickOutside = () => {
+    this.setState({
+      'showDropDown': false
+    });
+  }
+
+  setHeaderTitle = (props) => {
     let title = props.history.location.search.split('=')[1];
     this.setState({
       title
     });
   }
 
+  toggleDropDown = () => {
+    this.setState({
+      'showDropDown': !this.state.showDropDown
+    });
+  }
 
   render () {
     return(
@@ -32,7 +47,7 @@ class Header extends Component{
           </h2>
           
           {(()=>{
-            if (this.state.title !== 'allStars'){
+            if (this.state.title !== 'allStars' && this.state.title !== 'untagged'){
               return (
                 <div className="header-settings">
                   <i className="fa fa-cog m-right"></i>
@@ -59,11 +74,27 @@ class Header extends Component{
           </div>  
 
 
-        <div className="header-user">
+        <div className="header-user" onClick={this.toggleDropDown}>
           <img src="https://avatars0.githubusercontent.com/u/8335453?v=4" className="user-avatar"/>
           <span className="username m-right">Damanpreet Singh</span>
           <i className="fa fa-chevron-down"></i>
         </div>
+
+        {(()=>{
+          if(this.state.showDropDown){
+            return(
+              <div className="dropdown">
+                <ul>
+                  <li>test1</li>
+                  <li>test2</li>
+                  <li>test3</li>
+                  <li>Logout</li>
+                </ul>
+              </div>
+            );
+          }
+        })()}
+
       </div>
     );
   }

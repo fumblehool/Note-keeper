@@ -9,7 +9,7 @@ const initialState = fromJS({
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case types.Add_NEW_TAG:
+    case types.ADD_NEW_TAG:
       const tagsData = state.get('tags').toJSON();
       tagsData.unshift({
         name: action.tagName,
