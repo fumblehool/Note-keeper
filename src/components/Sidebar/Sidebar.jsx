@@ -1,11 +1,21 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
 import TagsList from './TagsList';
 import AddTagForm from './AddTagForm';
+
+
 
 class Sidebar extends Component{
   state = {
     'addTagVisibility': false,
-    'selectedTag': 'all',
+    'selectedTag': 'allStars',
+  };
+
+  componentDidMount(){
+    let selectedTag = this.props.history.location.search.split('=')[1];
+    this.setState({
+      selectedTag
+    });
   };
 
   onRefresh = () => {
@@ -22,7 +32,9 @@ class Sidebar extends Component{
     this.setState({
       'selectedTag': tagName
     })
+
     console.log('tag -> ', tagName, 'clicked')
+    this.props.history.push('/dashboard?tag=' + tagName);
   };
 
   addNewTag = (tagName) => {
@@ -46,11 +58,15 @@ class Sidebar extends Component{
         </div>
 
         <ul className="sidebar-options">
-          <li onClick={this.handleTagClick.bind(this, 'all')}>
+          <li onClick={this.handleTagClick.bind(this, 'allStars')}
+            className={classNames({'tag-focused': this.state.selectedTag === 'allStars'})}
+          >
             <i className="fa fa-inbox m-right"></i>
             All Stars
           </li>
-          <li onClick={this.handleTagClick.bind(this, 'untagged')}>
+          <li onClick={this.handleTagClick.bind(this, 'untagged')}
+            className={classNames({'tag-focused': this.state.selectedTag === 'untagged'})}
+          >
             <i className="fa fa-star-o m-right"></i>
             Untagged Stars
           </li>

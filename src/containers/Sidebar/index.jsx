@@ -20,6 +20,7 @@ class SidebarContainer extends Component {
       <Sidebar
         actions={this.props.actions}
         tags={this.props.tags}
+        history={this.props.history}
       />
       </div>
     );

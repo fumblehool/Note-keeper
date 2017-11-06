@@ -1,19 +1,45 @@
 import React, { Component } from 'react';
 
 
-
 class Header extends Component{
+  state = {
+    'title': 'All Stars'
+  };
+
+  componentDidMount(){
+    this.setHeaderTitle(this.props);
+  };
+
+  componentWillReceiveProps(nextProps) {
+    this.setHeaderTitle(nextProps);
+  };
+
+  setHeaderTitle(props){
+    let title = props.history.location.search.split('=')[1];
+    this.setState({
+      title
+    });
+  }
+
+
   render () {
     return(
       <div className="header">
         <div className="header-search">
           
-          <h2>All Stars</h2>
+          <h2>
+            {this.state.title}
+          </h2>
           
-          <div className="header-settings">
-            <i className="fa fa-cog m-right"></i>
-          </div>
-          
+          {(()=>{
+            if (this.state.title !== 'allStars'){
+              return (
+                <div className="header-settings">
+                  <i className="fa fa-cog m-right"></i>
+                </div>
+              )
+            }
+          })()}
 
           <div className="header-form">
             <label>

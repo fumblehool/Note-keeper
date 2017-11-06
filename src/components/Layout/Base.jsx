@@ -6,13 +6,20 @@ import Content from './../../containers/Content';
 // import Footer from './Footer';
 
 class Base extends PureComponent {
-  render () {
+
+  componentDidMount() {
+    if(!this.props.history.location.search){
+      this.props.history.push(`?tag=allStars`);
+    }
+  };
+
+  render() {
     return (
       <div className="wrapper">
-        <SidebarContainer />
-        <div className="main-content b-blue">
-          <HeaderContainer />
-          <Content />
+        <SidebarContainer history={this.props.history} />
+        <div className="main-content">
+          <HeaderContainer history={this.props.history} />
+          <Content history={this.props.history} />
         </div>
       </div>
     );

@@ -32,7 +32,7 @@ class Sidebar extends Component{
 
 
         <form className="tags-form">
-          <input className="tags-form-input" placeholder="Tag name" type="text"/>
+          <input className="tags-form-input" placeholder="  Tag name" type="text"/>
           <button>Save</button>
         </form>
 

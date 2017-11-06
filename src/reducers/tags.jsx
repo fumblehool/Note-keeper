@@ -10,12 +10,14 @@ const initialState = fromJS({
 export default function(state = initialState, action) {
   switch (action.type) {
     case types.Add_NEW_TAG:
-      let obj = [{
+      const tagsData = state.get('tags').toJSON();
+      tagsData.unshift({
         name: action.tagName,
         count: 0,
-      }];
+      })
+
       return state.merge({
-        tags: obj,
+        tags: tagsData,
       });
 
     case types.FETCH_TAGS_LIST:
