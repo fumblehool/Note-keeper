@@ -18,7 +18,7 @@ export default function (state = initialState, action) {
           'test',
           'test2'
         ],
-        'note': 'sample note',
+        'notes': 'sample note',
         'readMe': 'Readme of the repo you just clicked. =>' + action.repoId
       });
 

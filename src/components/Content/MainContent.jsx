@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import TopBar from './TopBar';
-
+import NotesEditor from './Editor';
 
 class MainContent extends Component{
 
   state = {
-    'editMode': false
+    'editMode': false,
+    'status': ''
   };
 
   componentWillReceiveProps(nextProps) {
@@ -25,6 +26,20 @@ class MainContent extends Component{
   handleTagsClick = () => {
   };
 
+  resetStatus = () => {
+    this.setState({
+      'status': ''
+    });
+  };
+
+  saveText = (text) => {
+    console.log('api call to save text');
+    this.setState({
+      'status': 'Saved'
+    });
+    setTimeout(this.resetStatus, 2000);
+  };
+
   render() {
     // To do - add condition to check instead of checking readMe.
     if (this.props.repoDetails.get('readMe')) {
@@ -34,6 +49,7 @@ class MainContent extends Component{
             handleNotesClick={this.handleNotesClick}
             handleTagsClick={this.handleTagsClick}
             editMode={this.state.editMode}
+            status={this.state.status}
           />  
         <div className="repo-readme">
           {(()=>{
@@ -43,7 +59,10 @@ class MainContent extends Component{
               );
             }
             return(
-              <div> Edit Notes.</div>
+              <NotesEditor 
+                notes={this.props.repoDetails.get('notes')}
+                saveText={this.saveText}
+              />
             );
           })()}
 

@@ -1,4 +1,5 @@
 
+
 body, html, #app{
   height: 100%;
   padding: 0px;
@@ -454,12 +455,13 @@ content-sidebar-li-active{
   line-height: 1.5;
   overflow-x: hidden;
   overflow-y: scroll;
-  padding: 20px;
+  padding: 0px;
   top: 45px;
   left: 0;
   bottom: 0;
   right: 0;
   word-wrap: break-word;
+  height: 100%;
 }
 
 .empty-placeholder {
@@ -501,3 +503,11 @@ content-sidebar-li-active{
   background-color: #658399;
   color: #fff;
 }
+
+.react-quill{
+  height: 200px;
+}
+
+
+
+@import "quill.snow.css";

@@ -31,7 +31,11 @@ class TopBar extends Component {
             
           </button>
           </div>
+          <div>
+            {this.props.status}
+          </div>
         </div>
+        
 
         <div className="clone-repo">
           <label>
