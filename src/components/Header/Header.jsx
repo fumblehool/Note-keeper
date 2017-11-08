@@ -13,9 +13,9 @@ class Header extends Component{
 
   componentWillReceiveProps(nextProps) {
     this.setHeaderTitle(nextProps);
-    if (this.state.showDropDown){
-      document.addEventListener('mousedown', this.handleClickOutside);
-    };
+    if (this.state.showDropDown) {
+      window.addEventListener('mousedown', this.handleClickOutside);
+    }
   };
 
   handleClickOutside = () => {

@@ -12,9 +12,10 @@ class Content extends Component {
     this.props.actions.fetchRepo(repoId);
   };
 
-  componentWillReceiveProps(nextProps){
-    if(this.props.tagName !== nextProps.tagName){
-      this.props.actions.fetchRepoList(nextProps.tagName);
+  componentWillMount(){
+    if (this.props.history.location.search){
+      let tagName = this.props.history.location.search.split('=')[1];
+      this.props.actions.fetchRepoList(tagName);
     }
   }
 
