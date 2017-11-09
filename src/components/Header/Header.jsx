@@ -19,6 +19,7 @@ class Header extends Component{
   };
 
   handleClickOutside = () => {
+    console.log('inside handleClickOutside');
     this.setState({
       'showDropDown': false
     });

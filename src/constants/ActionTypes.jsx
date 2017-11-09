@@ -11,3 +11,6 @@ export const FETCH_TAGS_LIST = 'FETCH_TAGS_LIST';
 export const ADD_NEW_TAG = 'ADD_NEW_TAG';
 
 export const FETCH_REPO_DETAILS = 'FETCH_REPO_DETAILS';
+
+export const SAVE_REPO_TEXT = 'SAVE_REPO_TEXT';
+export const SAVE_REPO_TAGS = 'SAVE_REPO_TAGS';

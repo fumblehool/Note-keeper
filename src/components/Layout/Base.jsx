@@ -11,13 +11,24 @@ class Base extends PureComponent {
     if (!this.props.history.location.search) {
       this.props.history.push(`?tag=allStars`);
     }
+
+    window.addEventListener('mousedown', this.test);
+  }
+
+  test = () => {
+    let self = this;
+    this.refs.headerContainer.refs.header.handleClickOutside();
+
   }
 
   render() {
     return ([
         <SidebarContainer key="0" history={this.props.history} />,
         <div className="main-content" key="1">
-          <HeaderContainer history={this.props.history} />
+          <HeaderContainer
+           history={this.props.history}
+           ref="headerContainer"
+          />
           <Content
             history={this.props.history}
             tagName={this.props.history.location.search.split('=')[1]}

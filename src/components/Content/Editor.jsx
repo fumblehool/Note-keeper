@@ -20,7 +20,6 @@ class NotesEditor extends React.Component {
     this.setState({ text });
 
     this.timer = setTimeout(this.saveText, 1000);
-
   }
 
   saveText = () => {

@@ -1,29 +1,35 @@
 import React, { Component } from 'react';
 import TopBar from './TopBar';
 import NotesEditor from './Editor';
+import TagsInputField from './TagsInputField';
 
 class MainContent extends Component{
 
   state = {
     'editMode': false,
-    'status': ''
+    'status': '',
+    'showTagsInput': false
   };
 
   componentWillReceiveProps(nextProps) {
     if(this.props.repoDetails !== nextProps.repoDetails){
       this.setState({
-        'editMode': false
+        'editMode': false,
+        'showTagsInput': false,
       });
     }
   }
 
   handleNotesClick = () => {
     this.setState({
-      'editMode': !this.state.editMode
+      'editMode': !this.state.editMode,
     })
   };
 
   handleTagsClick = () => {
+    this.setState({
+      'showTagsInput': !this.state.showTagsInput
+    });
   };
 
   resetStatus = () => {
@@ -33,12 +39,22 @@ class MainContent extends Component{
   };
 
   saveText = (text) => {
-    console.log('api call to save text');
+    this.props.actions.saveText(text, this.props.repoDetails.get('id'));
     this.setState({
       'status': 'Saved'
     });
     setTimeout(this.resetStatus, 2000);
   };
+
+  saveTags = (tags) => {
+
+    this.props.actions.saveTags(tags, this.props.repoDetails.get('id'));
+    this.setState({
+      'status': 'Saved'
+    });
+    setTimeout(this.resetStatus, 2000);
+  }
+
 
   render() {
     // To do - add condition to check instead of checking readMe.
@@ -49,8 +65,19 @@ class MainContent extends Component{
             handleNotesClick={this.handleNotesClick}
             handleTagsClick={this.handleTagsClick}
             editMode={this.state.editMode}
+            showTagsInput={this.state.showTagsInput}
             status={this.state.status}
-          />  
+          />
+          {(()=>{
+            if (this.state.showTagsInput) {
+              return ([
+                <TagsInputField
+                  repoDetails={this.props.repoDetails}
+                  saveTags={this.saveTags}
+                />
+              ]);
+            }
+          })()}
         <div className="repo-readme">
           {(()=>{
             if(!this.state.editMode){

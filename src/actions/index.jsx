@@ -87,9 +87,9 @@ const Actions = {
     return(dispatch) => {
       dispatch({
         type: types.ADD_NEW_TAG,
-        tagName
-      })
-    }
+        tagName,
+      });
+    };
   },
 
   fetchRepo(repoId) {
@@ -100,6 +100,28 @@ const Actions = {
       });
     };
   },
+
+  saveTags(tags, repoId) {
+    console.log('saveTags ==> ' + tags + repoId);
+    return (dispatch) => {
+      dispatch({
+        type: types.SAVE_REPO_TAGS,
+        tags,
+        repoId
+      });
+    }
+  },
+
+  saveText(notes, repoId) {
+    console.log('saveText ==> ' + notes + repoId);
+    return (dispatch) => {
+      dispatch({
+        type: types.SAVE_REPO_TEXT,
+        notes,
+      });
+    };
+  },
+
 };
 
 export default Actions;

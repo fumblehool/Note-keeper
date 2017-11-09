@@ -8,8 +8,8 @@ import actions from '../../actions';
 
 class Content extends Component {
 
-  handleRepoClick = (repoId) => {
-    this.props.actions.fetchRepo(repoId);
+  state = {
+    'repoDetails': new Map()
   };
 
   componentWillMount(){
@@ -18,6 +18,13 @@ class Content extends Component {
       this.props.actions.fetchRepoList(tagName);
     }
   }
+
+  handleRepoClick = (repoId) => {
+    const repoDetails = this.props.repos.get('reposList').filter((repo)=> repo.get('id') === repoId);
+    this.setState({
+      'repoDetails': repoDetails.get('0')
+    });
+  };
 
   render() {
     return (
@@ -28,7 +35,8 @@ class Content extends Component {
           history={this.props.history}
         />
         <MainContent
-          repoDetails={this.props.repoDetails}
+          repoDetails={this.state.repoDetails}
+          actions={this.props.actions}
         />
       </div>
     );
@@ -44,7 +52,6 @@ function mapDispatchToProps(dispatch) {
 function mapStatesToProps(state) {
   return {
     repos: state.repos,
-    repoDetails: state.repoDetails,
   };
 }
 
