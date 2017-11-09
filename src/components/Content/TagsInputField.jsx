@@ -35,7 +35,13 @@ class TagsInputField extends React.Component {
   };
 
   render() {
-    return <TagsInput value={this.state.tags} onChange={this.handleChange} />
+    return([ 
+      <TagsInput
+        value={this.state.tags}
+        onChange={this.handleChange}
+        key="tagsInput0"
+      />
+    ])
   }
 }
 

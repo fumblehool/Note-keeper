@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import classNames from 'classnames';
 
 class TopBar extends Component {
   render() {
@@ -8,7 +8,7 @@ class TopBar extends Component {
         <div className="edit">
           <div>
             <button onClick={this.props.handleTagsClick} 
-              className="repo-action">
+              className={classNames({'btn-focused': this.props.showTagsInput}, 'repo-action')}>
               <i className="fa fa-tag m-right"></i>
               Edit tags
             </button>

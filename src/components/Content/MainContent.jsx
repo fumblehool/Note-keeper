@@ -23,6 +23,7 @@ class MainContent extends Component{
   handleNotesClick = () => {
     this.setState({
       'editMode': !this.state.editMode,
+      'showTagsInput': false,
     })
   };
 
@@ -74,6 +75,7 @@ class MainContent extends Component{
                 <TagsInputField
                   repoDetails={this.props.repoDetails}
                   saveTags={this.saveTags}
+                  key="tagsInputField"
                 />
               ]);
             }

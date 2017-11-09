@@ -10,15 +10,22 @@ class Base extends PureComponent {
   componentDidMount() {
     if (!this.props.history.location.search) {
       this.props.history.push(`?tag=allStars`);
-    }
-
-    window.addEventListener('mousedown', this.test);
+    }   
+  }
+  
+  componentWillReceiveProps() {
+    // let self = this;
+    
+    // if (this.refs.headerContainer.refs.header.state.showDropDown) {
+    //   window.addEventListener('mousedown', this.handleMouseClick);
+    // }
+    // debugger;
   }
 
-  test = () => {
+  handleMouseClick = () => {
     let self = this;
     this.refs.headerContainer.refs.header.handleClickOutside();
-
+    debugger;
   }
 
   render() {
