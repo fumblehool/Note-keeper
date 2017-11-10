@@ -11,8 +11,8 @@ class TagsList extends Component{
     return (
       <ul className="sidebar-list">
         {(()=>{
-          if (this.props.tagsList && this.props.tagsList.get('tags').size) {
-            return this.props.tagsList.get('tags').map((tag, index)=>{
+          if (this.props.tagsList && this.props.tagsList.size) {
+            return this.props.tagsList.map((tag, index)=>{
               const tagName = tag.get('name');
               let style = 'sidebar-item';
               if (tagName === this.props.selectedTag) {

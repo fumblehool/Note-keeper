@@ -8,8 +8,8 @@ import actions from '../../actions/index';
 
 class SidebarContainer extends Component {
   componentDidMount() {
-    this.props.actions.fetchTagsList();
     this.props.actions.refreshRepoList();
+    this.props.actions.fetchTagsList();
   };
 
 
@@ -19,7 +19,7 @@ class SidebarContainer extends Component {
       <Logo />
       <Sidebar
         actions={this.props.actions}
-        tags={this.props.tags}
+        tags={this.props.repos.get('tags') || new Map([])}
         history={this.props.history}
       />
       </div>
@@ -35,7 +35,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStatesToProps(state) {
   return {
-    tags: state.tags,
+    repos: state.repos,
   };
 }
 

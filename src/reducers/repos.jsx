@@ -1,11 +1,13 @@
 import { fromJS } from 'immutable';
 import * as types from '../constants/ActionTypes';
+import _ from 'lodash';
 
 const initialState = fromJS({
   isFetching: false,
   isFetchingError: false,
   reposList: [],
   repoDetails: {},
+  tags: []
 });
 
 export default function (state = initialState, action) {
@@ -15,6 +17,31 @@ export default function (state = initialState, action) {
         'reposList': action.data
       });
 
+    case types.FETCH_TAGS_LIST:
+      let reposList = state.get('reposList').toJSON();
+      let tagList = _.flatten(_.map(reposList, 'tags'));
+      let tags = _.uniq(tagList);
+
+      let result = [];
+
+      tags.map((tag)=> {
+        let count = 0;
+        tagList.map((item)=> {
+          if (item === tag){
+            count = count + 1;
+          }
+        })
+        let obj = {
+          'name': tag,
+          'count': count
+        }
+        result.push(obj);
+      });
+
+      return state.merge({
+        tags: result
+      });
+    
     case types.GET_ALL_REPOS:
       return state.merge({
         'isFetchingError': false,

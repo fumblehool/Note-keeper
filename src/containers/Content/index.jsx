@@ -16,6 +16,7 @@ class Content extends Component {
     if (this.props.history.location.search){
       let tagName = this.props.history.location.search.split('=')[1];
       this.props.actions.fetchRepoList(tagName);
+      this.props.actions.fetchTagsList();
     }
   }
 
@@ -24,6 +25,11 @@ class Content extends Component {
     this.setState({
       'repoDetails': repoDetails.get('0')
     });
+  };
+
+  handleSaveTags = (tagsToBeSaved, tags, repoId) => {
+    this.props.actions.saveTags(tagsToBeSaved, tags, repoId);
+    this.props.actions.fetchTagsList();
   };
 
   render() {
@@ -37,6 +43,7 @@ class Content extends Component {
         <MainContent
           repoDetails={this.state.repoDetails}
           actions={this.props.actions}
+          handleSaveTags={this.handleSaveTags}
         />
       </div>
     );

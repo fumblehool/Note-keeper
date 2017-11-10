@@ -20,20 +20,28 @@ export default function(state = initialState, action) {
         tags: tagsData,
       });
 
-    case types.FETCH_TAGS_LIST:
+    
+    case types.SAVE_REPO_TAGS:
+      let tagList = state.get('tags').toJSON();
+      let result = [];
+      action.newTags.map((tag)=>{
+        let counter = 1;
+        tagList.map((i)=> {
+          if(i.name === tag){
+            counter = 0;
+            i.count = i.count +1;
+          }
+        });
+        if(counter){
+          let obj = {
+            'name': tag,
+            'count': 1
+          };
+          result.push(obj);
+        }
+      });
       return state.merge({
-        isFetching: false,
-        isFetchingError: false,
-        tags: [
-          {
-            name: 'test',
-            count: 2,
-          },
-          {
-            name: 'test2',
-            count: 3,
-          },
-        ],
+        tags: tagList.concat(result)
       });
 
     default:

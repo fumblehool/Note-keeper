@@ -1,37 +1,27 @@
 import TagsInput from 'react-tagsinput'
 import React from 'react';
-import 'react-tagsinput/react-tagsinput.css' // If using WebPack and style-loader.
+import '../../sass/react-tagsinput.css';
+import _ from 'lodash';
+
 
 class TagsInputField extends React.Component {
-  constructor() {
-    super()
-  }
-
   componentWillMount() {
-    // debugger;
-    this.timer = null;
-    
     const tags = this.props.repoDetails.get('tags').toArray()
     this.setState({
       tags
     });
   }
-
-  componentDidMount() {
-    // debugger;
-  }
   
-
   handleChange = (tags) => {
-    clearTimeout(this.timer); 
     this.setState({tags})
-
-    this.timer = setTimeout(this.saveTags, 1000);
-    
   };
 
   saveTags = () => {
-    this.props.saveTags(this.state.tags);
+    if(_.uniq(this.state.tags).length === this.state.tags.length){
+      this.props.saveTags(this.state.tags);
+    } else {
+      alert('duplicate tags found!');
+    }
   };
 
   render() {
@@ -40,7 +30,10 @@ class TagsInputField extends React.Component {
         value={this.state.tags}
         onChange={this.handleChange}
         key="tagsInput0"
-      />
+      />,
+      <div key="1">
+        <button onClick={this.saveTags}>Submit</button>
+      </div>
     ])
   }
 }

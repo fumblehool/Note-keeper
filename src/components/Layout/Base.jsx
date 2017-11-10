@@ -23,9 +23,7 @@ class Base extends PureComponent {
   }
 
   handleMouseClick = () => {
-    let self = this;
     this.refs.headerContainer.refs.header.handleClickOutside();
-    debugger;
   }
 
   render() {

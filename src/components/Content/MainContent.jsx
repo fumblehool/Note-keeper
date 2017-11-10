@@ -48,13 +48,29 @@ class MainContent extends Component{
   };
 
   saveTags = (tags) => {
-
-    this.props.actions.saveTags(tags, this.props.repoDetails.get('id'));
+    const prevTags = this.props.repoDetails.get('tags').toArray();
+    const tagsToBeSaved = this.resolveTags(prevTags, tags);
+    this.props.handleSaveTags(tagsToBeSaved, tags, this.props.repoDetails.get('id'));
     this.setState({
       'status': 'Saved'
     });
     setTimeout(this.resetStatus, 2000);
-  }
+  };
+
+  resolveTags = (prevTags, nextTags) => {
+    if (prevTags.length === 0) {
+      return nextTags;
+    } else if (prevTags.length < nextTags.length) {
+      const newTags = nextTags.filter((tag)=>{ return prevTags.indexOf(tag) === -1});
+      return newTags;
+    } else if (prevTags.length > nextTags.length) {
+      const newTags = prevTags.filter((tag)=>{ return nextTags.indexOf(tag) === -1});
+      return newTags;
+    } else {
+      //todo
+      return nextTags;
+    }
+  };
 
 
   render() {

@@ -101,15 +101,16 @@ const Actions = {
     };
   },
 
-  saveTags(tags, repoId) {
+  saveTags(newTags, tags, repoId) {
     console.log('saveTags ==> ' + tags + repoId);
     return (dispatch) => {
       dispatch({
         type: types.SAVE_REPO_TAGS,
+        newTags,
         tags,
-        repoId
+        repoId,
       });
-    }
+    };
   },
 
   saveText(notes, repoId) {
