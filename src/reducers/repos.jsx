@@ -9,7 +9,7 @@ const initialState = fromJS({
   reposList: [],
   originalReposList: [],
   repoDetails: {},
-  tags: []
+  tags: [],
 });
 
 export default function (state = initialState, action) {
@@ -23,13 +23,15 @@ export default function (state = initialState, action) {
       } else if (action.tag === 'untagged'){
         const filteredList = state.get('originalReposList').toJSON().filter((repo)=> repo.tags.length === 0)
         return state.merge({
-          reposList: filteredList
+          reposList: filteredList,
+          repoDetails: {}
         });  
       }
 
       const filteredList = state.get('originalReposList').toJSON().filter((repo)=> repo.tags.indexOf(action.tag)!== -1)
       return state.merge({
-        reposList: filteredList
+        reposList: filteredList,
+        repoDetails: {}
       });
 
     case types.FETCH_TAGS_LIST:
@@ -89,6 +91,13 @@ export default function (state = initialState, action) {
         ]
       });
 
+    case types.FETCH_REPO_DETAILS:
+
+      let repoObject = state.get('originalReposList').toJSON().filter((repo)=> repo.id === action.repoId);
+      return state.merge({
+        repoDetails: repoObject[0]
+      });
+    
     case types.SAVE_REPO_TAGS:
       let repoList = state.get('reposList').toJSON()
       repoList.map((repo) => {
@@ -111,23 +120,21 @@ export default function (state = initialState, action) {
         'originalReposList': originalRepoList
       });
 
-    case types.FETCH_REPO_DETAILS:
-      let repos = state.get('reposList').toJSON()
-      let repo = repos.filter((repo) => {
-        return repo.id === action.repoId;
-      })
-      return state.merge({
-        'id': repo.id,
-        'tags': repo.tags,
-        'notes': repo.notes,
-        'readMe': 'Readme of the repo you just clicked. =>' + action.repoId
-      });
-    
     case types.SAVE_REPO_TEXT:
       return state.merge({
         'notes': action.notes
       });
 
+    case types.ADD_NEW_TAG:
+      const tagsData = state.get('tags').toJSON();
+      tagsData.unshift({
+        name: action.tagName,
+        count: 0,
+      })
+
+      return state.merge({
+        tags: tagsData,
+      });  
       
 
 

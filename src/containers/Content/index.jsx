@@ -26,10 +26,7 @@ class Content extends Component {
   }
 
   handleRepoClick = (repoId) => {
-    const repoDetails = this.props.repos.get('reposList').filter((repo)=> repo.get('id') === repoId);
-    this.setState({
-      'repoDetails': repoDetails.get('0')
-    });
+    this.props.actions.fetchRepoDetails(repoId);
   };
 
   handleSaveTags = (tagsToBeSaved, tags, repoId) => {
@@ -46,7 +43,7 @@ class Content extends Component {
           history={this.props.history}
         />
         <MainContent
-          repoDetails={this.state.repoDetails}
+          repoDetails={this.props.repos.get('repoDetails')}
           actions={this.props.actions}
           handleSaveTags={this.handleSaveTags}
         />

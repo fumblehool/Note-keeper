@@ -62,20 +62,20 @@ const Actions = {
     };
   },
 
+  fetchRepoDetails(repoId) {
+    return (dispatch) => {
+      dispatch({
+        type: types.FETCH_REPO_DETAILS,
+        repoId,
+      });
+    };
+  },
+
   addNewTag(tagName) {
     return(dispatch) => {
       dispatch({
         type: types.ADD_NEW_TAG,
         tagName,
-      });
-    };
-  },
-
-  fetchRepo(repoId) {
-    return (dispatch) => {
-      dispatch({
-        type: types.FETCH_REPO_DETAILS,
-        repoId,
       });
     };
   },
