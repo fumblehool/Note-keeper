@@ -13,10 +13,15 @@ class Content extends Component {
   };
 
   componentWillMount(){
+    if(!this.props.repos.get('isFetchedOnce')){
+      this.props.actions.refreshRepoList();
+    } 
+  }
+
+  componentDidMount() {
     if (this.props.history.location.search){
       let tagName = this.props.history.location.search.split('=')[1];
       this.props.actions.fetchRepoList(tagName);
-      this.props.actions.fetchTagsList();
     }
   }
 

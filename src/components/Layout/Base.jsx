@@ -10,7 +10,7 @@ class Base extends PureComponent {
   componentDidMount() {
     if (!this.props.history.location.search) {
       this.props.history.push(`?tag=allStars`);
-    }   
+    }
   }
   
   componentWillReceiveProps() {

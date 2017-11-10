@@ -5,7 +5,9 @@ import _ from 'lodash';
 const initialState = fromJS({
   isFetching: false,
   isFetchingError: false,
+  isFetchedOnce: false,
   reposList: [],
+  originalReposList: [],
   repoDetails: {},
   tags: []
 });
@@ -13,12 +15,25 @@ const initialState = fromJS({
 export default function (state = initialState, action) {
   switch (action.type) {
     case types.FETCH_REPO_LIST:
+      if (action.tag === 'allStars'){
+        return state.merge({
+          reposList: state.get('originalReposList').toJSON(),
+          repoDetails: {}
+        })
+      } else if (action.tag === 'untagged'){
+        const filteredList = state.get('originalReposList').toJSON().filter((repo)=> repo.tags.length === 0)
+        return state.merge({
+          reposList: filteredList
+        });  
+      }
+
+      const filteredList = state.get('originalReposList').toJSON().filter((repo)=> repo.tags.indexOf(action.tag)!== -1)
       return state.merge({
-        'reposList': action.data
+        reposList: filteredList
       });
 
     case types.FETCH_TAGS_LIST:
-      let reposList = state.get('reposList').toJSON();
+      let reposList = state.get('originalReposList').toJSON();
       let tagList = _.flatten(_.map(reposList, 'tags'));
       let tags = _.uniq(tagList);
 
@@ -45,7 +60,8 @@ export default function (state = initialState, action) {
     case types.GET_ALL_REPOS:
       return state.merge({
         'isFetchingError': false,
-        'reposList': [
+        'isFetchedOnce': true,
+        'originalReposList': [
           {
             'id': 1,
             'name': 'samples',
@@ -81,8 +97,18 @@ export default function (state = initialState, action) {
         }
         return repo;
       })
+
+      let originalRepoList = state.get('originalReposList').toJSON()
+      originalRepoList.map((repo) => {
+        if(repo.id === action.repoId){
+          repo.tags = action.tags;
+        }
+        return repo;
+      })
+
       return state.merge({
-        'reposList': repoList
+        'reposList': repoList,
+        'originalReposList': originalRepoList
       });
 
     case types.FETCH_REPO_DETAILS:

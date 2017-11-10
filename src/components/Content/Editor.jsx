@@ -29,7 +29,6 @@ class NotesEditor extends React.Component {
     // var text = div.textContent || div.innerText || "";
 
     let editorText = this.state.text;
-    console.log(editorText);
     this.props.saveText(editorText);
     
   }

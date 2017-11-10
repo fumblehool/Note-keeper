@@ -57,28 +57,7 @@ const Actions = {
     return (dispatch) => {
       dispatch({
         type: types.FETCH_REPO_LIST,
-        'data': [
-          {
-            'id': 1,
-            'name': 'ES6-for-humans',
-            'owner': 'metagrover',
-            'description': 'A kickstarter guide to writing ES6',
-            'stars': '4283',
-            'forks': '226',
-            'link': 'https://github.com/metagrover/ES6-for-humans',
-            'tags': ['test']
-          },
-          {
-            'id': 2,
-            'name': 'samples',
-            'owner': 'GoogleChrome',
-            'description': 'A repo containing samples tied to new functionality in each release of Google Chrome.',
-            'stars': '3088',
-            'forks': '1206',
-            'link': 'https://github.com/GoogleChrome/samples',
-            'tags': ['test', 'test2']
-          }
-        ]
+        tag,
       });
     };
   },
@@ -102,7 +81,6 @@ const Actions = {
   },
 
   saveTags(newTags, tags, repoId) {
-    console.log('saveTags ==> ' + tags + repoId);
     return (dispatch) => {
       dispatch({
         type: types.SAVE_REPO_TAGS,
@@ -114,7 +92,6 @@ const Actions = {
   },
 
   saveText(notes, repoId) {
-    console.log('saveText ==> ' + notes + repoId);
     return (dispatch) => {
       dispatch({
         type: types.SAVE_REPO_TEXT,
