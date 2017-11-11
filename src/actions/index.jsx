@@ -53,15 +53,6 @@ const Actions = {
     };
   },
 
-  fetchRepoList(tag) {
-    return (dispatch) => {
-      dispatch({
-        type: types.FETCH_REPO_LIST,
-        tag,
-      });
-    };
-  },
-
   fetchRepoDetails(repoId) {
     return (dispatch) => {
       dispatch({

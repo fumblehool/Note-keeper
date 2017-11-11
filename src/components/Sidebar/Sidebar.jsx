@@ -33,7 +33,6 @@ class Sidebar extends Component{
       'selectedTag': tagName
     })
     this.props.history.push('/dashboard?tag=' + tagName);
-    this.props.actions.fetchRepoList(tagName);
   };
 
   addNewTag = (tagName) => {

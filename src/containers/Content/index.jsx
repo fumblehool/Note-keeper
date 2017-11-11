@@ -18,13 +18,6 @@ class Content extends Component {
     } 
   }
 
-  componentDidMount() {
-    if (this.props.history.location.search){
-      let tagName = this.props.history.location.search.split('=')[1];
-      this.props.actions.fetchRepoList(tagName);
-    }
-  }
-
   handleRepoClick = (repoId) => {
     this.props.actions.fetchRepoDetails(repoId);
   };

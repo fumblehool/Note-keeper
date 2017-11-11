@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
-
+import _ from 'lodash';
 class SideContent extends Component{
 
   state = {
@@ -19,8 +19,20 @@ class SideContent extends Component{
       <div className="content-sidebar">
         <ul className="content-sidebar-repos">
           {(()=>{
-            if (this.props.repoList && this.props.repoList.get('reposList') && this.props.repoList.get('reposList').size) {
-              return this.props.repoList.get('reposList').map((repo, index) => {
+            if (this.props.repoList && this.props.repoList.get('originalReposList') && this.props.repoList.get('originalReposList').size) {
+              if (this.props.history.location.search) {
+                let tagName = this.props.history.location.search.split('=')[1];
+                let filteredList = this.props.repoList.get('originalReposList');
+                
+                if(tagName === 'untagged'){
+                  filteredList = this.props.repoList.get('originalReposList').filter((repo)=> repo.get('tags').toJSON().length === 0);
+                } else if (tagName === 'allStars') {
+                  filteredList = this.props.repoList.get('originalReposList');
+                } else {
+                  filteredList = this.props.repoList.get('originalReposList').filter((repo)=> repo.get('tags').toJSON().indexOf(tagName) !== -1);
+                }
+                
+                return filteredList.map((repo, index) => {
                 return(
                   <li className={classNames('content-sidebar-li', {'content-sidebar-li-active': repo.get('id') === this.state.selectedRepoId})} key={index}
                     onClick={this.onRepoClick.bind(this, repo.get('id'))}>
@@ -57,6 +69,7 @@ class SideContent extends Component{
                 </li>
                 );
               })
+              }
             }
           })()}
         </ul>  

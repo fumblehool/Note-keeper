@@ -14,25 +14,6 @@ const initialState = fromJS({
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case types.FETCH_REPO_LIST:
-      if (action.tag === 'allStars'){
-        return state.merge({
-          reposList: state.get('originalReposList').toJSON(),
-          repoDetails: {}
-        })
-      } else if (action.tag === 'untagged'){
-        const filteredList = state.get('originalReposList').toJSON().filter((repo)=> repo.tags.length === 0)
-        return state.merge({
-          reposList: filteredList,
-          repoDetails: {}
-        });  
-      }
-
-      const filteredList = state.get('originalReposList').toJSON().filter((repo)=> repo.tags.indexOf(action.tag)!== -1)
-      return state.merge({
-        reposList: filteredList,
-        repoDetails: {}
-      });
 
     case types.FETCH_TAGS_LIST:
       let reposList = state.get('originalReposList').toJSON();
@@ -92,21 +73,12 @@ export default function (state = initialState, action) {
       });
 
     case types.FETCH_REPO_DETAILS:
-
       let repoObject = state.get('originalReposList').toJSON().filter((repo)=> repo.id === action.repoId);
       return state.merge({
         repoDetails: repoObject[0]
       });
     
     case types.SAVE_REPO_TAGS:
-      let repoList = state.get('reposList').toJSON()
-      repoList.map((repo) => {
-        if(repo.id === action.repoId){
-          repo.tags = action.tags;
-        }
-        return repo;
-      })
-
       let originalRepoList = state.get('originalReposList').toJSON()
       originalRepoList.map((repo) => {
         if(repo.id === action.repoId){
@@ -116,8 +88,7 @@ export default function (state = initialState, action) {
       })
 
       return state.merge({
-        'reposList': repoList,
-        'originalReposList': originalRepoList
+        'originalReposList': originalRepoList,
       });
 
     case types.SAVE_REPO_TEXT:
