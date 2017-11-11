@@ -954,5 +954,6 @@
   color: #06c;
 }
 .ql-container.ql-snow {
-  border: 1px solid #ccc;
+  border: none;
+  font-size: .9 rem;
 }

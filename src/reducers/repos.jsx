@@ -92,8 +92,10 @@ export default function (state = initialState, action) {
       });
 
     case types.SAVE_REPO_TEXT:
+      let list = state.get('originalReposList').toJSON();
+      list.map((item)=> { if (item.id === action.repoId) { item.notes = action.notes; }})
       return state.merge({
-        'notes': action.notes
+        'originalReposList': list,
       });
 
     case types.ADD_NEW_TAG:

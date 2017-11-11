@@ -87,6 +87,7 @@ const Actions = {
       dispatch({
         type: types.SAVE_REPO_TEXT,
         notes,
+        repoId,
       });
     };
   },

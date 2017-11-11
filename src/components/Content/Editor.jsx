@@ -15,38 +15,23 @@ class NotesEditor extends React.Component {
   }
 
   handleChange = (text) => {
-    // clearTimeout(this.timer);
+    clearTimeout(this.timer);
     
     this.setState({ text });
-
-    // this.timer = setTimeout(this.saveText, 1000);
+    this.timer = setTimeout(this.saveText, 1000);
   }
 
   saveText = () => {
-    // Strip html - if required.
-    // var div = document.createElement("div");
-    // div.innerHTML = this.state.text;
-    // var text = div.textContent || div.innerText || "";
-
-    let editorText = this.state.text;
-    this.props.saveText(editorText);
-    
+    this.props.saveText(this.state.text);
   }
   
   render() {
-    const divStyle = {
-      border: 'none',
-      fontSize: '.9 rem',
-    };
-
     return ([
       <ReactQuill value={this.state.text}
         onChange={this.handleChange}
         className="react-quill"
         key="0"
       >
-        <div className="my-editing-area" style={divStyle}>
-      </div>
       </ReactQuill>,
     ])
   }
