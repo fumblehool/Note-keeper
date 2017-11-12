@@ -1,6 +1,7 @@
 import { fromJS } from 'immutable';
 import * as types from '../constants/ActionTypes';
 import _ from 'lodash';
+import { repoData } from '../constants/sample';
 
 const initialState = fromJS({
   isFetching: false,
@@ -41,39 +42,15 @@ export default function (state = initialState, action) {
       });
     
     case types.GET_ALL_REPOS:
+
       return state.merge({
         'isFetchingError': false,
         'isFetchedOnce': true,
-        'originalReposList': [
-          {
-            'id': 1,
-            'name': 'samples',
-            'owner': 'GoogleChrome',
-            'description': 'A repo containing samples tied to new functionality in each release of Google Chrome.',
-            'stars': '3088',
-            'forks': '1206',
-            'link': 'https://github.com/GoogleChrome/samples',
-            'tags': ['test', 'test2'],
-            'notes': 'sample note',
-            'readMe': 'Sample readMe of 1'
-          },
-          {
-            'id': 2,
-            'name': 'ES6-for-humans',
-            'owner': 'metagrover',
-            'description': 'A kickstarter guide to writing ES6',
-            'stars': '4283',
-            'forks': '226',
-            'link': 'https://github.com/metagrover/ES6-for-humans',
-            'tags': ['test'],
-            'notes': 'sample note',
-            'readMe': 'Sample readMe of 2'
-          },
-        ]
+        'originalReposList': repoData
       });
 
     case types.FETCH_REPO_DETAILS:
-      let repoObject = state.get('originalReposList').toJSON().filter((repo)=> repo.id === action.repoId);
+      let repoObject = state.get('originalReposList').toJSON().filter((repo)=> { return repo.id === action.repoId });
       return state.merge({
         repoDetails: repoObject[0]
       });

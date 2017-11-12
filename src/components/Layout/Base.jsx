@@ -6,6 +6,9 @@ import Content from './../../containers/Content';
 // import Footer from './Footer';
 
 class Base extends PureComponent {
+  state = {
+    'searchText': ''
+  };
 
   componentDidMount() {
     if (!this.props.history.location.search) {
@@ -26,6 +29,12 @@ class Base extends PureComponent {
     this.refs.headerContainer.refs.header.handleClickOutside();
   }
 
+  handleSearchChange = (text) => {
+    this.setState({
+      searchText: text
+    });
+  }
+
   render() {
     return ([
         <SidebarContainer key="0" history={this.props.history} />,
@@ -33,10 +42,12 @@ class Base extends PureComponent {
           <HeaderContainer
            history={this.props.history}
            ref="headerContainer"
+           handleChange={this.handleSearchChange}
           />
           <Content
             history={this.props.history}
             tagName={this.props.history.location.search.split('=')[1]}
+            searchText={this.state.searchText}
           />
         </div>,
     ]);

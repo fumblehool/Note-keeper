@@ -34,6 +34,7 @@ class Content extends Component {
           repoList={this.props.repos}
           onRepoClick={this.handleRepoClick}
           history={this.props.history}
+          searchText={this.props.searchText}
         />
         <MainContent
           repoDetails={this.props.repos.get('repoDetails')}

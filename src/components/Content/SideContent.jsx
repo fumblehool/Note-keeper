@@ -31,13 +31,21 @@ class SideContent extends Component{
                 } else {
                   filteredList = this.props.repoList.get('originalReposList').filter((repo)=> repo.get('tags').toJSON().indexOf(tagName) !== -1);
                 }
-                
+                if (this.props.searchText) {
+                  let self = this;
+                  let fL = filteredList;
+                  filteredList = fL.filter((repo) => {
+                                  if(repo.get('description').toLowerCase().indexOf(this.props.searchText) !== -1 ||
+                                    repo.get('full_name').toLowerCase().indexOf(this.props.searchText) !== -1) {
+                                    return repo;
+                                  }});
+                }
                 return filteredList.map((repo, index) => {
                 return(
                   <li className={classNames('content-sidebar-li', {'content-sidebar-li-active': repo.get('id') === this.state.selectedRepoId})} key={index}
                     onClick={this.onRepoClick.bind(this, repo.get('id'))}>
                     <h3 className="content-sidebar-li-h3">
-                      {repo.get('owner')}/{repo.get('name')}
+                      {repo.get('full_name')}
                     </h3> 
                   <div className="content-sidebar-li-description">
                     {repo.get('description')}
@@ -54,7 +62,7 @@ class SideContent extends Component{
                   <div className="content-sidebar-li-repo-stats">
                     <div className="stars">
                       <i className="fa fa-star m-right"></i>
-                      {repo.get('stars')}
+                      {repo.get('stargazers_count')}
                     </div>
                     <div className="forks">
                       <i className="fa fa-code-fork m-right"></i>

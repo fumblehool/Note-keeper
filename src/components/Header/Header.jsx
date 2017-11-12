@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 class Header extends Component{
   state = {
     'title': 'All Stars',
-    'showDropDown': false
+    'showDropDown': false,
   };
 
   componentDidMount(){
@@ -22,6 +22,10 @@ class Header extends Component{
     this.setState({
       'showDropDown': false
     });
+  }
+
+  onChangeSearchText = (e) => {
+    this.props.handleChange(e.target.value.toLowerCase());
   }
 
   setHeaderTitle = (props) => {
@@ -61,7 +65,9 @@ class Header extends Component{
               <span className="input-group-addon">
                 <i className="fa fa-search"></i>
               </span>  
-              <input type="text" placeholder="search"/>
+              <input type="text" placeholder="search"
+                onChange={this.onChangeSearchText}
+              />
               
             </label>
           </div> 

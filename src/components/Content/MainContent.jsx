@@ -75,7 +75,7 @@ class MainContent extends Component{
 
   render() {
     // To do - add condition to check instead of checking readMe.
-    if (this.props.repoDetails.get('readMe')) {
+    if (this.props.repoDetails.get('id')) {
       return(
         <div className="section">
           <TopBar
