@@ -16,7 +16,6 @@ class TopBar extends Component {
           <div>
           <button className="repo-action" onClick={this.props.handleNotesClick}>
             <i className="fa fa-sticky-note m-right"></i>
-            
             {(()=>{
                 if (this.props.editMode){
                   return(
@@ -27,21 +26,18 @@ class TopBar extends Component {
                   <span>Notes</span>
                 );
               })()}
-            
-            
           </button>
           </div>
-          <div>
-            {this.props.status}
-          </div>
         </div>
-        
+        <div className="status">
+          {this.props.status}
+        </div>
 
         <div className="clone-repo">
           <label>
             Clone: 
           </label>  
-          <input className="clone-repo-input" disabled placeholder="git@github.com:GoogleChrome/samples.git"/>
+          <input className="clone-repo-input" disabled placeholder={this.props.repoDetails.get('clone_url')}/>
         </div>  
       </div>
     );

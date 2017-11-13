@@ -419,7 +419,6 @@ content-sidebar-li-active{
   margin-left: 20px;
   align-items: center;
   justify-content: space-between;
-  width: 22%; 
 }
 
 .repo-action {
@@ -428,6 +427,11 @@ content-sidebar-li-active{
   background-color: #fff;
   border-radius: 5px;
   cursor: pointer;
+  margin-left: 10px;
+}
+
+.status {
+  color: #5fce70;
 }
 
 .edit > div > button:hover{
@@ -466,8 +470,7 @@ content-sidebar-li-active{
   right: 0;
   word-wrap: break-word;
   height: 100%;
-  padding: 20px;
-  max-width: 730px;
+  max-width: 750px;
 }
 
 .repo-readme a{
@@ -534,5 +537,8 @@ content-sidebar-li-active{
   margin-left: 20px;
 }
 
+.p-20 {
+  padding: 20px;
+}
 
 @import "quill.snow.css";

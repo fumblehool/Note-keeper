@@ -84,6 +84,7 @@ class MainContent extends Component{
             editMode={this.state.editMode}
             showTagsInput={this.state.showTagsInput}
             status={this.state.status}
+            repoDetails={this.props.repoDetails}
           />
           {(()=>{
             if (this.state.showTagsInput) {
@@ -100,7 +101,9 @@ class MainContent extends Component{
           {(()=>{ 
             if(!this.state.editMode){
               return(
-                <div dangerouslySetInnerHTML={{__html: this.props.repoDetails.get('readMe')}}>
+                <div
+                  className="p-20"
+                  dangerouslySetInnerHTML={{__html: this.props.repoDetails.get('readMe')}}>
                 </div>
               );
             }

@@ -69,7 +69,7 @@ class SideContent extends Component{
                       {repo.get('forks')}
                     </div>
                     <div className="link">
-                      <a href={repo.get('link')}>
+                      <a href={repo.get('html_url')}>
                         View on GitHub
                       </a>
                     </div>
