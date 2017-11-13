@@ -57,6 +57,7 @@ body, html, #app{
   background-color: #28343d;
   color: white;
   width: 280px;
+  min-height: 100%;
 }
 
 .sidebar-list{
@@ -327,15 +328,6 @@ body, html, #app{
   position: relative;
   top: 2px;
 }
-
-.header-form{
-
-}
-
-.header-status{
-
-}
-
 
 .user-avatar {
   border-radius: 50%;

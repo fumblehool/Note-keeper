@@ -73,14 +73,8 @@ class Header extends Component{
               />
               
             </label>
-          </div> 
-          
-          
+          </div>
         </div>
-
-        <div className="header-status">
-            Status
-          </div>  
 
 
         <div className="header-user" onClick={this.toggleDropDown}>
@@ -103,7 +97,6 @@ class Header extends Component{
             );
           }
         })()}
-
       </div>
     );
   }

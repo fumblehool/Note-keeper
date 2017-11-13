@@ -7,7 +7,7 @@ export default {
     return fetch(`https://api.github.com/repos/${repoName}/readme`, {
       headers: {
         Accept: 'application/vnd.github.v3.html',
-      }
+      },
     });
   },
 };

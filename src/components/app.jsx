@@ -17,7 +17,7 @@ class App extends React.Component {
             <Route path="*" component={NotFound} />
           </Switch>
         </div>
-    </Router>
+      </Router>
     );
   }
 }

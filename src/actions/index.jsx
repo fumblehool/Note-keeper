@@ -60,7 +60,7 @@ const Actions = {
         type: types.SORT_TAGS_LIST,
         order,
       });
-    }
+    };
   },
 
   fetchRepoDetails(repoId, repoName) {
@@ -70,27 +70,25 @@ const Actions = {
       });
 
       return githubApi.fetchReadMe(repoName)
-      .then(checkStatus)
-      .then((res) => {
-        return res.text();
-      })
-      .then((readMe)=> {
-        dispatch({
-          type: types.FETCH_REPO_DETAILS_FINISHED,
-          repoId,
-          readMe,
-          'notes': `sample note for ${repoId}`,
-          'tags': ['test', 'hello']
+        .then(checkStatus)
+        .then(res => res.text())
+        .then((readMe) => {
+          dispatch({
+            type: types.FETCH_REPO_DETAILS_FINISHED,
+            repoId,
+            readMe,
+            notes: `sample note for ${repoId}`,
+            tags: ['test', 'hello'],
+          });
         })
-      })
-      .catch((error)=> {
-        console.log(error);
-      })
+        .catch(() => {
+          // TO-Do
+        });
     };
   },
 
   addNewTag(tagName) {
-    return(dispatch) => {
+    return (dispatch) => {
       dispatch({
         type: types.ADD_NEW_TAG,
         tagName,
