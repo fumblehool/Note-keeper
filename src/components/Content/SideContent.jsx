@@ -7,11 +7,11 @@ class SideContent extends Component{
     'selectedRepoId': ''
   }
 
-  onRepoClick = (repoId) => {
+  onRepoClick = (repoId, repoName) => {
     this.setState({
       'selectedRepoId': repoId
     });
-    this.props.onRepoClick(repoId);
+    this.props.onRepoClick(repoId, repoName);
   };
 
   render() {
@@ -43,7 +43,7 @@ class SideContent extends Component{
                 return filteredList.map((repo, index) => {
                 return(
                   <li className={classNames('content-sidebar-li', {'content-sidebar-li-active': repo.get('id') === this.state.selectedRepoId})} key={index}
-                    onClick={this.onRepoClick.bind(this, repo.get('id'))}>
+                    onClick={this.onRepoClick.bind(this, repo.get('id'), repo.get('full_name'))}>
                     <h3 className="content-sidebar-li-h3">
                       {repo.get('full_name')}
                     </h3> 

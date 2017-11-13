@@ -65,7 +65,10 @@ class Header extends Component{
               <span className="input-group-addon">
                 <i className="fa fa-search"></i>
               </span>  
-              <input type="text" placeholder="search"
+              <input
+                className="search-field m-l-20" 
+                type="text" 
+                placeholder="search"
                 onChange={this.onChangeSearchText}
               />
               

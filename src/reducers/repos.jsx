@@ -49,10 +49,14 @@ export default function (state = initialState, action) {
         'originalReposList': repoData
       });
 
-    case types.FETCH_REPO_DETAILS:
+    case types.FETCH_REPO_DETAILS_FINISHED:
       let repoObject = state.get('originalReposList').toJSON().filter((repo)=> { return repo.id === action.repoId });
+      let rD = repoObject[0];
+      rD.readMe = action.readMe;
+      rD.tags = action.tags;
+      rD.notes = action.notes;
       return state.merge({
-        repoDetails: repoObject[0]
+        repoDetails: rD
       });
     
     case types.SAVE_REPO_TAGS:

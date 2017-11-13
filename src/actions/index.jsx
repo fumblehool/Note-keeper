@@ -1,5 +1,6 @@
 import * as types from '../constants/ActionTypes';
 import userApi from '../api/user';
+import githubApi from '../api/githubApi';
 
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
@@ -53,12 +54,26 @@ const Actions = {
     };
   },
 
-  fetchRepoDetails(repoId) {
+  fetchRepoDetails(repoId, repoName) {
     return (dispatch) => {
       dispatch({
-        type: types.FETCH_REPO_DETAILS,
-        repoId,
+        type: types.FETCH_REPO_DETAILS_INIT,
       });
+
+      return githubApi.fetchReadMe(repoName)
+      .then(checkStatus)
+      .then((res) => {
+        return res.text();
+      })
+      .then((readMe)=> {
+        dispatch({
+          type: types.FETCH_REPO_DETAILS_FINISHED,
+          repoId,
+          readMe,
+          'notes': `sample note for ${repoId}`,
+          'tags': ['test', 'hello']
+        })
+      })
     };
   },
 

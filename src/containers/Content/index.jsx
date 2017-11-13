@@ -18,8 +18,8 @@ class Content extends Component {
     } 
   }
 
-  handleRepoClick = (repoId) => {
-    this.props.actions.fetchRepoDetails(repoId);
+  handleRepoClick = (repoId, repoName) => {
+    this.props.actions.fetchRepoDetails(repoId, repoName);
   };
 
   handleSaveTags = (tagsToBeSaved, tags, repoId) => {

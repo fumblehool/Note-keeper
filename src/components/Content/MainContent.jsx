@@ -3,6 +3,9 @@ import TopBar from './TopBar';
 import NotesEditor from './Editor';
 import TagsInputField from './TagsInputField';
 
+var showdown = require('showdown');
+
+
 class MainContent extends Component{
 
   state = {
@@ -98,9 +101,12 @@ class MainContent extends Component{
           })()}
         <div className="repo-readme">
           {(()=>{
+            let converter = new showdown.Converter();
+            let htmlOutput = converter.makeHtml(this.props.repoDetails.get('readMe'));
             if(!this.state.editMode){
               return(
-                <div>{this.props.repoDetails.get('readMe')}</div>
+                <div dangerouslySetInnerHTML={{__html: htmlOutput}}>
+                </div>
               );
             }
             return(
