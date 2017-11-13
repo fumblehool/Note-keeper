@@ -74,6 +74,9 @@ const Actions = {
           'tags': ['test', 'hello']
         })
       })
+      .catch((error)=> {
+        console.log(error);
+      })
     };
   },
 

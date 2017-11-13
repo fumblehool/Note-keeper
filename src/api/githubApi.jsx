@@ -6,7 +6,7 @@ export default {
   fetchReadMe(repoName) {
     return fetch(`https://api.github.com/repos/${repoName}/readme`, {
       headers: {
-        Accept: 'application/vnd.github.v3.raw',
+        Accept: 'application/vnd.github.v3.html',
       }
     });
   },
