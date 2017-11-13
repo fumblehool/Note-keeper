@@ -54,6 +54,15 @@ const Actions = {
     };
   },
 
+  sortTagsList(order) {
+    return (dispatch) => {
+      dispatch({
+        type: types.SORT_TAGS_LIST,
+        order,
+      });
+    }
+  },
+
   fetchRepoDetails(repoId, repoName) {
     return (dispatch) => {
       dispatch({

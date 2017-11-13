@@ -89,7 +89,12 @@ export default function (state = initialState, action) {
       return state.merge({
         tags: tagsData,
       });  
-      
+
+    case types.SORT_TAGS_LIST:
+      const sortedTagsList = _.orderBy(state.get('tags').toJSON(), 'name', action.order);
+      return state.merge({
+        tags: sortedTagsList
+      });
 
 
     default:

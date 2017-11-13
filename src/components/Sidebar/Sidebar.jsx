@@ -9,6 +9,7 @@ class Sidebar extends Component{
   state = {
     'addTagVisibility': false,
     'selectedTag': 'allStars',
+    'sortOrder': 'asc',
   };
 
   componentDidMount(){
@@ -25,6 +26,14 @@ class Sidebar extends Component{
   onAddTag = () => {
     this.setState({
       'addTagVisibility': !this.state.addTagVisibility
+    });
+  };
+
+  onSortTags = () => {
+    this.props.actions.sortTagsList(this.state.sortOrder);
+    let sortOrder = this.state.sortOrder === 'asc'? 'desc' : 'asc';
+    this.setState({
+      sortOrder
     });
   };
 
@@ -74,7 +83,7 @@ class Sidebar extends Component{
           <h3 className="sidebar-tags-header-text">Tags</h3>
           <div className="sidebar-tags-header-options b-red">
             <div onClick={this.onAddTag}><i className="fa fa-plus-circle m-right"></i>Add</div>
-            <div><i className="fa fa-sort m-right"></i>Sort</div>
+            <div onClick={this.onSortTags}><i className="fa fa-sort m-right"></i>Sort</div>
           </div>     
         </div>  
 

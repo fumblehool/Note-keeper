@@ -13,7 +13,6 @@ class App extends React.Component {
       <Router>
         <div className="wrapper">
           <Switch>
-            
             <Route path="/dashboard" component={Base} />
             <Route path="*" component={NotFound} />
           </Switch>
