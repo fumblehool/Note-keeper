@@ -1,3 +1,4 @@
 module.exports = {
     'API_KEY': '2adadaE@F?RwfqwFWR',
+    'API_HOST': 'http://dev.note-keeper.com:5000',
   };

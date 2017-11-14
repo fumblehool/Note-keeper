@@ -2,6 +2,7 @@ import _ from 'lodash';
 import { fromJS } from 'immutable';
 import * as types from '../constants/ActionTypes';
 import { repoData } from '../constants/sample';
+import { tagsListNormalizer } from '../utils/Normalizer';
 
 const initialState = fromJS({
   isFetching: false,
@@ -15,7 +16,7 @@ const initialState = fromJS({
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case types.ADD_NEW_TAG:
+    case types.ADD_NEW_TAG_FINISHED:
       const tagsData = state.get('tags').toJSON();
       tagsData.unshift({
         name: action.tagName,
@@ -26,31 +27,14 @@ export default function (state = initialState, action) {
         tags: tagsData,
       });
 
-    case types.FETCH_TAGS_LIST:
-      const reposList = state.get('originalReposList').toJSON();
-      const tagList = _.flatten(_.map(reposList, 'tags'));
-      const tags = _.uniq(tagList);
-      const result = [];
-      tags.map((tag) => {
-        let count = 0;
-        tagList.map((item) => {
-          if (item === tag) {
-            count += 1;
-          }
-        });
-        const obj = {
-          name: tag,
-          count,
-        };
-        result.push(obj);
-      });
-
+    case types.FETCH_TAGS_LIST_FINISHED:
       return state.merge({
-        tags: result,
+        tags: tagsListNormalizer(state.get('originalReposList').toJSON()),
       });
 
 
     case types.FETCH_REPO_DETAILS_FINISHED:
+    debugger;
       const repoObject = state.get('originalReposList').toJSON().filter(repo => repo.id === action.repoId);
       const rD = repoObject[0];
       rD.readMe = action.readMe;
@@ -60,14 +44,27 @@ export default function (state = initialState, action) {
         repoDetails: rD,
       });
 
-    case types.GET_ALL_REPOS:
+    case types.GET_ALL_REPOS_INIT:
+      return state.merge({
+        'isFetching': true,
+        'isFetchingError': false
+      })  
+
+    case types.GET_ALL_REPOS_FINISHED:
       return state.merge({
         isFetchingError: false,
         isFetchedOnce: true,
-        originalReposList: repoData,
+        originalReposList: action.data,
+        tags: tagsListNormalizer(action.data),
+      });
+    
+    case types.GET_ALL_REPOS_ERROR:
+      return state.merge({
+        isFetchingError: true,
+        errorMessage: action.error,
       });
 
-    case types.SAVE_REPO_TAGS:
+    case types.SAVE_REPO_TAGS_FINISHED:
       const originalRepoList = state.get('originalReposList').toJSON();
       originalRepoList.map((repo) => {
         if (repo.id === action.repoId) {
@@ -80,7 +77,7 @@ export default function (state = initialState, action) {
         originalReposList: originalRepoList,
       });
 
-    case types.SAVE_REPO_TEXT:
+    case types.SAVE_REPO_TEXT_FINISHED:
       const list = state.get('originalReposList').toJSON();
       list.map((item) => {
         if (item.id === action.repoId) {

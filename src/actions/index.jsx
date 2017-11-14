@@ -1,6 +1,6 @@
 import * as types from '../constants/ActionTypes';
 import userApi from '../api/user';
-import githubApi from '../api/githubApi';
+import api from '../api/api';
 
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
@@ -13,6 +13,13 @@ function checkStatus(response) {
       error.response = jsonResponse;
       throw error;
     });
+}
+
+function parseJSON(response) {
+  if (response.json) {
+    return response.json();
+  }
+  return response;
 }
 
 const Actions = {
@@ -41,15 +48,31 @@ const Actions = {
   refreshRepoList() {
     return (dispatch) => {
       dispatch({
-        type: types.GET_ALL_REPOS,
+        type: types.GET_ALL_REPOS_INIT,
       });
+      return api.fetchReposList()
+        .then(parseJSON)
+        .then((reposList) => {
+          dispatch({
+            type: types.GET_ALL_REPOS_FINISHED,
+            data: reposList,
+          });
+        })
+        .catch((error) => {
+          dispatch({
+            type: types.GET_ALL_REPOS_ERROR,
+            error
+          })
+        })
+
+
     };
   },
 
   fetchTagsList() {
     return (dispatch) => {
       dispatch({
-        type: types.FETCH_TAGS_LIST,
+        type: types.FETCH_TAGS_LIST_FINISHED,
       });
     };
   },
@@ -69,7 +92,7 @@ const Actions = {
         type: types.FETCH_REPO_DETAILS_INIT,
       });
 
-      return githubApi.fetchReadMe(repoName)
+      return api.fetchReadMe(repoName)
         .then(checkStatus)
         .then(res => res.text())
         .then((readMe) => {
@@ -81,8 +104,11 @@ const Actions = {
             tags: ['test', 'hello'],
           });
         })
-        .catch(() => {
-          // TO-Do
+        .catch((error) => {
+          dispatch({
+            type: types.FETCH_REPO_DETAILS_ERROR,
+            error,
+          });
         });
     };
   },
@@ -90,7 +116,7 @@ const Actions = {
   addNewTag(tagName) {
     return (dispatch) => {
       dispatch({
-        type: types.ADD_NEW_TAG,
+        type: types.ADD_NEW_TAG_FINISHED,
         tagName,
       });
     };
@@ -99,7 +125,7 @@ const Actions = {
   saveTags(newTags, tags, repoId) {
     return (dispatch) => {
       dispatch({
-        type: types.SAVE_REPO_TAGS,
+        type: types.SAVE_REPO_TAGS_FINISHED,
         newTags,
         tags,
         repoId,
@@ -110,12 +136,14 @@ const Actions = {
   saveText(notes, repoId) {
     return (dispatch) => {
       dispatch({
-        type: types.SAVE_REPO_TEXT,
+        type: types.SAVE_REPO_TEXT_FINISHED,
         notes,
         repoId,
       });
     };
   },
+
+  
 
 };
 

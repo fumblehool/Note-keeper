@@ -61,9 +61,8 @@ class Header extends Component{
           })()}
 
           <div className="header-form">
-            <label>
               <span className="input-group-addon">
-                <i className="fa fa-search"></i>
+                <i className="fa fa-search search-icon"></i>
               </span>  
               <input
                 className="search-field m-l-20" 
@@ -71,8 +70,6 @@ class Header extends Component{
                 placeholder="search"
                 onChange={this.onChangeSearchText}
               />
-              
-            </label>
           </div>
         </div>
 

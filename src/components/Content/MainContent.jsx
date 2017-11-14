@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TopBar from './TopBar';
 import NotesEditor from './Editor';
 import TagsInputField from './TagsInputField';
-
+import classNames from 'classnames';
 class MainContent extends Component{
 
   state = {
@@ -78,6 +78,7 @@ class MainContent extends Component{
     if (this.props.repoDetails.get('id')) {
       return(
         <div className="section">
+          <span className="spinner"></span>
           <TopBar
             handleNotesClick={this.handleNotesClick}
             handleTagsClick={this.handleTagsClick}

@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
-
-// import ApiConstants from '../constants/ApiConstants';
+import ApiConstants from '../constants/ApiConstants';
+const { API_HOST } = ApiConstants;
 
 export default {
   fetchReadMe(repoName) {
@@ -8,6 +8,12 @@ export default {
       headers: {
         Accept: 'application/vnd.github.v3.html',
       },
+    });
+  },
+
+  fetchReposList() {
+    return fetch(`${API_HOST}/api/github/stars`, {
+      include: 'credentials',
     });
   },
 };
