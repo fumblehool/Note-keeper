@@ -113,12 +113,27 @@ const Actions = {
     };
   },
 
-  addNewTag(tagName) {
+  fetchUserDetails() {
     return (dispatch) => {
       dispatch({
-        type: types.ADD_NEW_TAG_FINISHED,
-        tagName,
+        type: types.FETCH_USER_DETAILS_INIT,
       });
+
+      return api.fetchUserDetails()
+        .then(checkStatus)
+        .then(parseJSON)
+        .then((data) => {
+          dispatch({
+            type: types.FETCH_USER_DETAILS_FINISHED,
+            data,
+          });
+        })
+        .catch((error) => {
+          dispatch({
+            type: types.FETCH_USER_DETAILS_ERROR,
+            error,
+          });
+        });
     };
   },
 

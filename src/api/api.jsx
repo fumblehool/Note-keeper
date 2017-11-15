@@ -13,7 +13,13 @@ export default {
 
   fetchReposList() {
     return fetch(`${API_HOST}/api/github/stars`, {
-      include: 'credentials',
+      credentials: 'include',
+    });
+  },
+
+  fetchUserDetails() {
+    return fetch(`${API_HOST}/api/github/user`, {
+      credentials: 'include',
     });
   },
 };

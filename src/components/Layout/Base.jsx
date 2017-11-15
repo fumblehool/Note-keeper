@@ -5,11 +5,21 @@ import SidebarContainer from './../../containers/Sidebar';
 import Content from './../../containers/Content';
 // import Footer from './Footer';
 
+
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import actions from '../../actions';
+
+
 class Base extends PureComponent {
   state = {
     'searchText': ''
   };
 
+  componentWillMount() {
+    this.props.actions.refreshRepoList();
+    this.props.actions.fetchUserDetails();
+  }
   componentDidMount() {
     if (!this.props.history.location.search) {
       this.props.history.push(`?tag=allStars`);
@@ -43,15 +53,33 @@ class Base extends PureComponent {
            history={this.props.history}
            ref="headerContainer"
            handleChange={this.handleSearchChange}
+           user={this.props.user}
           />
           <Content
             history={this.props.history}
             tagName={this.props.history.location.search.split('=')[1]}
             searchText={this.state.searchText}
+            repos={this.props.repos}
+            history={this.props.history}
+            actions={this.props.actions}
           />
         </div>,
     ]);
   }
 }
 
-export default Base;
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(actions, dispatch),
+  };
+}
+
+function mapStatesToProps(state) {
+  return {
+    repos: state.repos,
+    user: state.user,
+  };
+}
+
+export default connect(mapStatesToProps, mapDispatchToProps)(Base);

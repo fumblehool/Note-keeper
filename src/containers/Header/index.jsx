@@ -9,6 +9,7 @@ class HeaderContainer extends Component {
         history={this.props.history}
         ref="header"
         handleChange={this.props.handleChange}
+        user={this.props.user}
       />,
     ]);
   }

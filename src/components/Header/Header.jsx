@@ -74,11 +74,23 @@ class Header extends Component{
         </div>
 
 
-        <div className="header-user" onClick={this.toggleDropDown}>
-          <img src="https://avatars0.githubusercontent.com/u/8335453?v=4" className="user-avatar"/>
-          <span className="username m-right">Damanpreet Singh</span>
-          <i className="fa fa-chevron-down"></i>
-        </div>
+          {(()=>{
+            let username = '';
+            let img_url = 'http://via.placeholder.com/350x150';
+            if(this.props.user && this.props.user.get('userDetails').size){
+              username = this.props.user.getIn(['userDetails', 'login']);
+              img_url = this.props.user.getIn(['userDetails', 'avatar_url']);
+            }
+
+            return (
+              <div className="header-user" onClick={this.toggleDropDown}>
+                <img src={img_url} className="user-avatar"/>
+                <span className="username m-right">{username}</span>
+                <i className="fa fa-chevron-down"></i>
+              </div>
+            )
+          })()}
+          
 
         {(()=>{
           if(this.state.showDropDown){

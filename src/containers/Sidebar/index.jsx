@@ -8,7 +8,6 @@ import actions from '../../actions/index';
 
 class SidebarContainer extends Component {
   componentDidMount() {
-    this.props.actions.refreshRepoList();
     this.props.actions.fetchTagsList();
   };
 

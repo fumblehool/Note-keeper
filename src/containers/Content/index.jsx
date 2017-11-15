@@ -2,21 +2,12 @@ import React, { Component } from 'react';
 import SideContent from '../../components/Content/SideContent';
 import MainContent from '../../components/Content/MainContent';
 
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import actions from '../../actions';
 
 class Content extends Component {
 
   state = {
     'repoDetails': new Map()
   };
-
-  componentWillMount(){
-    if(!this.props.repos.get('isFetchedOnce')){
-      this.props.actions.refreshRepoList();
-    } 
-  }
 
   handleRepoClick = (repoId, repoName) => {
     this.props.actions.fetchRepoDetails(repoId, repoName);
@@ -46,16 +37,4 @@ class Content extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(actions, dispatch),
-  };
-}
-
-function mapStatesToProps(state) {
-  return {
-    repos: state.repos,
-  };
-}
-
-export default connect(mapStatesToProps, mapDispatchToProps)(Content);
+export default Content;

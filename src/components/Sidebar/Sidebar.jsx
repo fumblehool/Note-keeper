@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import TagsList from './TagsList';
-import AddTagForm from './AddTagForm';
 
 
 
@@ -44,9 +43,6 @@ class Sidebar extends Component{
     this.props.history.push('/dashboard?tag=' + tagName);
   };
 
-  addNewTag = (tagName) => {
-    this.props.actions.addNewTag(tagName);
-  };
 
   render() {
     return(
@@ -82,21 +78,11 @@ class Sidebar extends Component{
         <div className="sidebar-tags-header b-blue">
           <h3 className="sidebar-tags-header-text">Tags</h3>
           <div className="sidebar-tags-header-options b-red">
-            <div onClick={this.onAddTag}><i className="fa fa-plus-circle m-right"></i>Add</div>
-            <div onClick={this.onSortTags}><i className="fa fa-sort m-right"></i>Sort</div>
+            <div className="sort-tags" onClick={this.onSortTags}><i className="fa fa-sort m-right"></i>Sort</div>
           </div>     
         </div>  
 
-      {(() => {
-        if (this.state.addTagVisibility) {
-          return (  
-            <AddTagForm
-              active={this.state.addTagVisibility}
-              addNewTag={this.addNewTag}
-             />
-          );
-        }
-      })()}
+
       
       <TagsList
         handleTagClick={this.handleTagClick}

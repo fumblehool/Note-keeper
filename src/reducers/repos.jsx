@@ -16,17 +16,6 @@ const initialState = fromJS({
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case types.ADD_NEW_TAG_FINISHED:
-      const tagsData = state.get('tags').toJSON();
-      tagsData.unshift({
-        name: action.tagName,
-        count: 0,
-      });
-
-      return state.merge({
-        tags: tagsData,
-      });
-
     case types.FETCH_TAGS_LIST_FINISHED:
       return state.merge({
         tags: tagsListNormalizer(state.get('originalReposList').toJSON()),
@@ -46,13 +35,14 @@ export default function (state = initialState, action) {
     case types.GET_ALL_REPOS_INIT:
       return state.merge({
         'isFetching': true,
-        'isFetchingError': false
+        'isFetchingError': false,
       })  
 
     case types.GET_ALL_REPOS_FINISHED:
       return state.merge({
         isFetchingError: false,
         isFetchedOnce: true,
+        isFetching: false,
         originalReposList: action.data,
         tags: tagsListNormalizer(action.data),
       });
