@@ -34,7 +34,6 @@ export default function (state = initialState, action) {
 
 
     case types.FETCH_REPO_DETAILS_FINISHED:
-    debugger;
       const repoObject = state.get('originalReposList').toJSON().filter(repo => repo.id === action.repoId);
       const rD = repoObject[0];
       rD.readMe = action.readMe;

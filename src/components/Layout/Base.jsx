@@ -27,13 +27,13 @@ class Base extends PureComponent {
 
   handleMouseClick = () => {
     this.refs.headerContainer.refs.header.handleClickOutside();
-  }
+  };
 
   handleSearchChange = (text) => {
     this.setState({
       searchText: text
     });
-  }
+  };
 
   render() {
     return ([

@@ -88,7 +88,11 @@ class Header extends Component{
                   <li>test1</li>
                   <li>test2</li>
                   <li>test3</li>
-                  <li>Logout</li>
+                  <li>
+                    <a href="http://dev.note-keeper.com:5000/logout">
+                      Logout
+                    </a>
+                  </li>
                 </ul>
               </div>
             );
