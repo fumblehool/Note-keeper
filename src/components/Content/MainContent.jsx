@@ -7,7 +7,6 @@ class MainContent extends Component{
 
   state = {
     'editMode': false,
-    'status': '',
     'showTagsInput': false
   };
 
@@ -34,17 +33,11 @@ class MainContent extends Component{
   };
 
   resetStatus = () => {
-    this.setState({
-      'status': ''
-    });
+    this.props.actions.clearSaveStatus();
   };
 
   saveText = (text) => {
     this.props.actions.saveText(text, this.props.repoDetails.get('id'));
-    this.setState({
-      'status': 'Saved'
-    });
-    setTimeout(this.resetStatus, 2000);
   };
 
   saveTags = (tags) => {
@@ -84,8 +77,9 @@ class MainContent extends Component{
             handleTagsClick={this.handleTagsClick}
             editMode={this.state.editMode}
             showTagsInput={this.state.showTagsInput}
-            status={this.state.status}
+            status={this.props.status}
             repoDetails={this.props.repoDetails}
+            resetStatus={this.resetStatus}
           />
           {(()=>{
             if (this.state.showTagsInput) {

@@ -140,26 +140,59 @@ const Actions = {
   saveTags(newTags, tags, repoId) {
     return (dispatch) => {
       dispatch({
-        type: types.SAVE_REPO_TAGS_FINISHED,
-        newTags,
-        tags,
-        repoId,
+        type: types.SAVE_REPO_TAGS_INIT,
       });
+
+      return api.saveRepoTags(newTags, tags, repoId)
+        .then(checkStatus)
+        .then(parseJSON)
+        .then(() => {
+          dispatch({
+            type: types.SAVE_REPO_TAGS_FINISHED,
+            newTags,
+            tags,
+            repoId,
+          });
+        })
+        .catch((error) => {
+          dispatch({
+            type: types.SAVE_REPO_TAGS_ERROR,
+            error,
+          });
+        });
     };
   },
 
   saveText(notes, repoId) {
     return (dispatch) => {
       dispatch({
-        type: types.SAVE_REPO_TEXT_FINISHED,
-        notes,
-        repoId,
+        type: types.SAVE_REPO_TEXT_INIT,
       });
+
+      return api.saveRepoText(notes, repoId)
+        .then(checkStatus)
+        .then(parseJSON)
+        .then(() => {
+          dispatch({
+            type: types.SAVE_REPO_TEXT_FINISHED,
+            notes,
+            repoId,
+          });
+        })
+        .catch((error) => {
+          dispatch({
+            type: types.SAVE_REPO_TEXT_ERROR,
+            error
+          });
+        });
     };
   },
 
-  
-
+  clearSaveStatus() {
+    return {
+      type: types.CLEAR_SAVE_STATUS,
+    };
+  },
 };
 
 export default Actions;

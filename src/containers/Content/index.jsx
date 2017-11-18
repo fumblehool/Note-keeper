@@ -29,6 +29,7 @@ class Content extends Component {
         />
         <MainContent
           repoDetails={this.props.repos.get('repoDetails')}
+          status={this.props.repos.getIn(['saveRepoText', 'status']) || ''}
           actions={this.props.actions}
           handleSaveTags={this.handleSaveTags}
         />

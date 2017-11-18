@@ -32,7 +32,6 @@ class Base extends PureComponent {
     // if (this.refs.headerContainer.refs.header.state.showDropDown) {
     //   window.addEventListener('mousedown', this.handleMouseClick);
     // }
-    // debugger;
   }
 
   handleMouseClick = () => {

@@ -5,6 +5,7 @@ body, html, #app{
   padding: 0px;
   margin: 0px;
   font-family: Karla,Helvetica Neue,Helvetica,Arial,sans-serif;
+  overflow: hidden;
 }
 
 .wrapper{
@@ -16,6 +17,7 @@ body, html, #app{
 .sidebar{
   display: flex;
   flex-direction: column;
+  min-height: 700px;
 }
 
 .main-content{
@@ -34,6 +36,7 @@ body, html, #app{
   max-height: 50px;
   padding-top:10px;
   padding-bottom: 10px;
+  min-width: 700px;
 }
 
 .search-icon {
@@ -54,6 +57,7 @@ body, html, #app{
 .content{
   display: flex;
   height: 100%;
+  min-height: 700px;
 }
 
 .sidebar-content{
@@ -411,6 +415,7 @@ body, html, #app{
   border-bottom: 1px solid rgba(55,53,112,.1);
   box-shadow: 0 1px 3px rgba(55,53,112,.08);
   align-items: center;
+  min-width: 500px;
 }
 
 .edit {
@@ -546,6 +551,10 @@ body, html, #app{
   padding-right: 20px;
   padding-left: 0px;
   border-left: 1px solid #39444c;;
+}
+
+.danger {
+  color: red;
 }
 
 @import "quill.snow.css";

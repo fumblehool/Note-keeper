@@ -23,10 +23,11 @@ export default function (state = initialState, action) {
         userDetails: action.data,
       });
 
-      case types.FETCH_USER_DETAILS_ERROR:
+    case types.FETCH_USER_DETAILS_ERROR:
       return state.merge({
         isFetchingError: true,
-      });  
+      });
+
     default:
       return state;
   }

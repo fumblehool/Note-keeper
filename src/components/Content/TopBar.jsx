@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 
 class TopBar extends Component {
+  resetStatus = () => {
+    this.props.resetStatus();
+  };
+
   render() {
     return (
       <div className="section-topbar">
@@ -30,7 +34,16 @@ class TopBar extends Component {
           </div>
         </div>
         <div className="status">
-          {this.props.status}
+          {(() => {
+            if (this.props.status === 'Saved') {
+              this.resetStatus();
+              return (
+                <span>
+                  Saved
+                </span>
+              );
+            }
+          })()}
         </div>
 
         <div className="clone-repo">

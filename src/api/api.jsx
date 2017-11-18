@@ -22,4 +22,23 @@ export default {
       credentials: 'include',
     });
   },
+
+  saveRepoText(notes, repoId) {
+    const body = {
+      repoId,
+      notes
+    };
+    return fetch(`${API_HOST}/api/stars/notes`, {
+      method: 'POST',
+      body: JSON.stringify(body),
+      credentials: 'include',
+    });
+  },
+
+  saveRepoTags(newTags, tags, repoId) {
+    return fetch(`${API_HOST}/api/stars/tags`, {
+      method: 'POST',
+      credentials: 'include',
+    });
+  },
 };
